@@ -1,0 +1,1644 @@
+{
+  "case_id": "PASS-OPEN-CONDITION",
+  "description": "All gates PASS while an upstream condition remains OPEN.",
+  "artifacts": [
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/requirements-assessment.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "RequirementsAssessment",
+      "artifact_id": "PASS-OPEN-RQA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "REQUIREMENTS_QUALITY",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T12:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/requirements-quality-agent",
+        "source_uri": "https://github.com/DameurMounir/requirements-quality-agent",
+        "release": "v0.2.0",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "tree_sha": "1111111111111111111111111111111111111112",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [],
+      "authority": {
+        "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+        "actor_id": "MOUNIR",
+        "role": "REQUIREMENTS_REVIEWER",
+        "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+        "action": "CONFIRM",
+        "outcome": "APPROVED",
+        "rationale": "The two requirements are evidence-backed and buildable.",
+        "conditions": [],
+        "artifact_digest": "7dbe6d625721f3905ed7c1b1c02f0ba55ba560910fe4b2adfccfaebda60e408e",
+        "recorded_at": "2026-08-08T11:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "e0a4fd8c58b83f4dc07de01105afe2b151cb7930fa275139f5c5a931233cf858",
+      "artifact_sha256": "23858e5ea7cf4452204d397b0aaa83e0697a3d9f9aafbf4f4be1a56d03797509",
+      "chain_sha256": "478a12621fb8555c6492af5dac5161578a46ed8ab382c1dea193c6bd9bf6cd2f",
+      "payload": {
+        "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+        "source_pack_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+        "requirements": [
+          {
+            "requirement_id": "ATLASBRIDGE-REQ-IDENTITY-001",
+            "statement": "Identity evidence must be verified before an onboarding case can be approved.",
+            "status": "CONFIRMED",
+            "priority": "MUST",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-REQ-IDENTITY-001",
+                "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-001",
+                "source_id": "requirements/atlasbridge.md",
+                "source_path": "requirements/atlasbridge.md",
+                "source_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+                "exact_quote": "Identity evidence must be verified before an onboarding case can be approved.",
+                "quote_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          },
+          {
+            "requirement_id": "ATLASBRIDGE-REQ-TRAINING-001",
+            "statement": "Support training is mandatory before the new onboarding process enters production.",
+            "status": "CONFIRMED",
+            "priority": "MUST",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-REQ-TRAINING-001",
+                "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-002",
+                "source_id": "requirements/training.md",
+                "source_path": "requirements/training.md",
+                "source_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+                "exact_quote": "Support training is mandatory before the new onboarding process enters production.",
+                "quote_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "findings": [],
+        "open_clarification_questions": [],
+        "approved_revisions": [],
+        "critical_unresolved_count": 0,
+        "scorecard": {
+          "total_requirements": 2,
+          "confirmed": 2,
+          "unresolved": 0,
+          "rejected": 0,
+          "quality_score_basis_points": 10000
+        },
+        "analysis_provenance": {
+          "analysis_method": "requirements-quality-agent deterministic ruleset",
+          "rulebook_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+          "analysis_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+        },
+        "human_review": {
+          "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+          "actor_id": "MOUNIR",
+          "role": "REQUIREMENTS_REVIEWER",
+          "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+          "action": "CONFIRM",
+          "outcome": "APPROVED",
+          "rationale": "The two requirements are evidence-backed and buildable.",
+          "conditions": [],
+          "artifact_digest": "7dbe6d625721f3905ed7c1b1c02f0ba55ba560910fe4b2adfccfaebda60e408e",
+          "recorded_at": "2026-08-08T11:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "This assessment does not authorize implementation or release."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/stakeholder-alignment-packet.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "StakeholderAlignmentPacket",
+      "artifact_id": "PASS-OPEN-SAA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "STAKEHOLDER_ALIGNMENT",
+      "status": "CONDITIONALLY_APPROVED",
+      "produced_at": "2026-08-08T13:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/stakeholder-alignment-agent",
+        "source_uri": "https://github.com/DameurMounir/stakeholder-alignment-agent",
+        "release": "v0.2.0",
+        "commit_sha": "2222222222222222222222222222222222222221",
+        "tree_sha": "2222222222222222222222222222222222222222",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "RequirementsAssessment",
+          "artifact_id": "PASS-OPEN-RQA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "23858e5ea7cf4452204d397b0aaa83e0697a3d9f9aafbf4f4be1a56d03797509",
+          "chain_sha256": "478a12621fb8555c6492af5dac5161578a46ed8ab382c1dea193c6bd9bf6cd2f",
+          "relationship": "DERIVED_FROM",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T12:00:00Z"
+        }
+      ],
+      "authority": {
+        "decision_id": "ATLASBRIDGE-ALIGN-001",
+        "actor_id": "ATLASBRIDGE-SPONSOR",
+        "role": "BUSINESS_SPONSOR",
+        "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+        "action": "APPROVE_WITH_CONDITIONS",
+        "outcome": "CONDITIONAL",
+        "rationale": "Option B is acceptable only after support training evidence is complete.",
+        "conditions": [
+          "Complete and evidence support training before go-live."
+        ],
+        "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+        "recorded_at": "2026-08-08T12:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "a7b9a419b86b19a3f40838126add99b9b90b256f98e3fa828fd3e6387d4706eb",
+      "artifact_sha256": "b07466dc91ce69aacf4eb0c131893ce501890a0198161a84020a622a5195a337",
+      "chain_sha256": "09f551fff52db196d41c1aac1058ad097ef6ded7d88231a39e382f0c526bf4ab",
+      "payload": {
+        "alignment_decision_id": "ATLASBRIDGE-ALIGN-001",
+        "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+        "agreed_requirement_ids": [
+          "ATLASBRIDGE-REQ-IDENTITY-001",
+          "ATLASBRIDGE-REQ-TRAINING-001"
+        ],
+        "disputed_requirement_ids": [],
+        "undecided_requirement_ids": [],
+        "alignment_issues": [
+          {
+            "issue_id": "ATLASBRIDGE-ALIGN-ISSUE-001",
+            "requirement_ids": [
+              "ATLASBRIDGE-REQ-TRAINING-001"
+            ],
+            "status": "AGREED",
+            "summary": "Training is mandatory and remains an open pre-release condition.",
+            "option_ids": [
+              "OPT-B"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-ALIGN-DECISION-001",
+                "source_artifact_id": "ATLASBRIDGE-ALIGN-SOURCE-001",
+                "source_id": "decisions/alignment.md",
+                "source_path": "decisions/alignment.md",
+                "source_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+                "exact_quote": "Option B is selected subject to completion of support training.",
+                "quote_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "options": [
+          {
+            "option_id": "OPT-A",
+            "title": "Manual verification",
+            "description": "Retain the manual onboarding review.",
+            "conditions": []
+          },
+          {
+            "option_id": "OPT-B",
+            "title": "Controlled automation",
+            "description": "Automate risk scoring while preserving identity and approval controls.",
+            "conditions": [
+              "ATLASBRIDGE-COND-TRAINING-001"
+            ]
+          }
+        ],
+        "selected_option_id": "OPT-B",
+        "scoped_approvals": [
+          {
+            "decision_id": "ATLASBRIDGE-ALIGN-001",
+            "actor_id": "ATLASBRIDGE-SPONSOR",
+            "role": "BUSINESS_SPONSOR",
+            "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+            "action": "SELECT",
+            "outcome": "CONDITIONAL",
+            "rationale": "Option B is acceptable only after support training evidence is complete.",
+            "conditions": [
+              "Complete and evidence support training before go-live."
+            ],
+            "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+            "recorded_at": "2026-08-08T12:55:00Z",
+            "review_round": 1
+          }
+        ],
+        "open_conditions": [
+          {
+            "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+            "description": "Complete and evidence support training before go-live.",
+            "owner": "SUPPORT-LEAD",
+            "due_at": "2026-08-15T17:00:00Z",
+            "status": "OPEN",
+            "evidence_refs": []
+          }
+        ],
+        "sponsor_outcome": "CONDITIONAL_GO",
+        "decision_digest": "9e5e0e202016b25c1d66d8a29123ced032dc8af1170041983d94ba4116e080d1",
+        "decision": {
+          "decision_id": "ATLASBRIDGE-ALIGN-001",
+          "actor_id": "ATLASBRIDGE-SPONSOR",
+          "role": "BUSINESS_SPONSOR",
+          "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+          "action": "APPROVE_WITH_CONDITIONS",
+          "outcome": "CONDITIONAL",
+          "rationale": "Option B is acceptable only after support training evidence is complete.",
+          "conditions": [
+            "Complete and evidence support training before go-live."
+          ],
+          "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+          "recorded_at": "2026-08-08T12:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "Conditional approval is not release authorization."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/process-redesign-decision.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "ProcessRedesignDecision",
+      "artifact_id": "PASS-OPEN-PRD-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "PROCESS_REDESIGN",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T14:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/process-redesign-agent",
+        "source_uri": "https://github.com/DameurMounir/process-redesign-agent",
+        "release": "v0.2.0",
+        "commit_sha": "3333333333333333333333333333333333333331",
+        "tree_sha": "3333333333333333333333333333333333333332",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "RequirementsAssessment",
+          "artifact_id": "PASS-OPEN-RQA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "23858e5ea7cf4452204d397b0aaa83e0697a3d9f9aafbf4f4be1a56d03797509",
+          "chain_sha256": "478a12621fb8555c6492af5dac5161578a46ed8ab382c1dea193c6bd9bf6cd2f",
+          "relationship": "DERIVED_FROM",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T12:00:00Z"
+        },
+        {
+          "artifact_type": "StakeholderAlignmentPacket",
+          "artifact_id": "PASS-OPEN-SAA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "b07466dc91ce69aacf4eb0c131893ce501890a0198161a84020a622a5195a337",
+          "chain_sha256": "09f551fff52db196d41c1aac1058ad097ef6ded7d88231a39e382f0c526bf4ab",
+          "relationship": "CONSTRAINED_BY",
+          "status": "CONDITIONALLY_APPROVED",
+          "produced_at": "2026-08-08T13:00:00Z"
+        }
+      ],
+      "authority": {
+        "decision_id": "ATLASBRIDGE-PROCESS-001",
+        "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+        "role": "PROCESS_DECISION_OWNER",
+        "authority_scope": "PROCESS_OPTION_SELECTION",
+        "action": "SELECT",
+        "outcome": "APPROVED",
+        "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+        "conditions": [],
+        "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+        "recorded_at": "2026-08-08T13:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "4b76237a6337b929c22a45b621379b35ef32028d135dfe8432e654b6db08be91",
+      "artifact_sha256": "2754b27872ea810ca4c0bd438b02cf30de55f7340fd183e02416d93bcb77edc9",
+      "chain_sha256": "9d4496a2b14be6c8fcd2619803c690a317976761481f71b9d8d4fbdbfe57f19d",
+      "payload": {
+        "process_decision_id": "ATLASBRIDGE-PROCESS-001",
+        "selected_option_id": "OPT-B",
+        "constraining_condition_ids": [
+          "ATLASBRIDGE-COND-TRAINING-001"
+        ],
+        "comparison_digest": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+        "options_assessed": [
+          {
+            "option_id": "OPT-A",
+            "title": "Manual verification",
+            "control_ids": [
+              "CTRL-IDENTITY",
+              "CTRL-HUMAN-APPROVAL"
+            ],
+            "effort_person_days": 30,
+            "cost_minor_units": 2500000,
+            "currency": "MAD",
+            "duration_days": 20,
+            "change_risk": "LOW"
+          },
+          {
+            "option_id": "OPT-B",
+            "title": "Controlled automation",
+            "control_ids": [
+              "CTRL-IDENTITY",
+              "CTRL-HUMAN-APPROVAL",
+              "CTRL-AUDIT-LOG"
+            ],
+            "effort_person_days": 45,
+            "cost_minor_units": 4000000,
+            "currency": "MAD",
+            "duration_days": 30,
+            "change_risk": "MEDIUM"
+          }
+        ],
+        "to_be_process": {
+          "process_id": "ATLASBRIDGE-TO-BE-001",
+          "version": "1.0.0",
+          "steps": [
+            {
+              "step_id": "STEP-IDENTITY-VERIFY",
+              "name": "Verify identity evidence",
+              "owner_role": "ONBOARDING_ANALYST",
+              "predecessor_step_ids": [],
+              "controls": [
+                "CTRL-IDENTITY"
+              ]
+            },
+            {
+              "step_id": "STEP-RISK-SCORE",
+              "name": "Calculate automated risk score and route exceptions",
+              "owner_role": "ONBOARDING_SYSTEM",
+              "predecessor_step_ids": [
+                "STEP-IDENTITY-VERIFY"
+              ],
+              "controls": [
+                "CTRL-HUMAN-APPROVAL",
+                "CTRL-AUDIT-LOG"
+              ]
+            }
+          ]
+        },
+        "controls_preserved": [
+          "CTRL-IDENTITY",
+          "CTRL-HUMAN-APPROVAL",
+          "CTRL-AUDIT-LOG"
+        ],
+        "assumptions": [
+          "The existing identity provider remains available during migration."
+        ],
+        "target_metrics": [
+          {
+            "metric_id": "METRIC-CYCLE-TIME",
+            "name": "Median onboarding cycle time",
+            "unit": "minutes",
+            "target_value": "30",
+            "measurement_window_days": 30
+          }
+        ],
+        "selection": {
+          "decision_id": "ATLASBRIDGE-PROCESS-001",
+          "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+          "role": "PROCESS_DECISION_OWNER",
+          "authority_scope": "PROCESS_OPTION_SELECTION",
+          "action": "SELECT",
+          "outcome": "APPROVED",
+          "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+          "conditions": [],
+          "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+          "recorded_at": "2026-08-08T13:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "The selection does not authorize production implementation."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/change-impact-packet.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "ChangeImpactPacket",
+      "artifact_id": "PASS-OPEN-BCI-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "CHANGE_IMPACT",
+      "status": "VALIDATED",
+      "produced_at": "2026-08-08T15:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/business-change-impact-agent",
+        "source_uri": "https://github.com/DameurMounir/business-change-impact-agent",
+        "release": "v0.2.0",
+        "commit_sha": "4444444444444444444444444444444444444441",
+        "tree_sha": "4444444444444444444444444444444444444442",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "ProcessRedesignDecision",
+          "artifact_id": "PASS-OPEN-PRD-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "2754b27872ea810ca4c0bd438b02cf30de55f7340fd183e02416d93bcb77edc9",
+          "chain_sha256": "9d4496a2b14be6c8fcd2619803c690a317976761481f71b9d8d4fbdbfe57f19d",
+          "relationship": "DERIVED_FROM",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T14:00:00Z"
+        }
+      ],
+      "authority": null,
+      "payload_sha256": "2a230f3dcdd3d65a68c2fd6c7a094e0a0c8bab5f82961f4834eb1af51a04f6f6",
+      "artifact_sha256": "df47b72e087e6290a3c86cd1027e366cb7d6a98446676ad88624b95a5fd0e148",
+      "chain_sha256": "52ce9a595bd474a4b2bab07e0fd85a6b50f8c7585f275b466c42464b1ed9a872",
+      "payload": {
+        "change_package_id": "ATLASBRIDGE-CHANGE-001",
+        "selected_process_option_id": "OPT-B",
+        "derived_from_artifact_id": "PASS-OPEN-PRD-ATLASBRIDGE-001",
+        "derived_from_artifact_sha256": "2754b27872ea810ca4c0bd438b02cf30de55f7340fd183e02416d93bcb77edc9",
+        "business_graph_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+        "rulebook_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+        "case_digest": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+        "analysis_digest": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+        "portfolio_chain_sha256": "9d4496a2b14be6c8fcd2619803c690a317976761481f71b9d8d4fbdbfe57f19d",
+        "direct_impacts": [
+          {
+            "impact_id": "IMPACT-SUPPORT-TRAINING",
+            "impact_kind": "DIRECT",
+            "category": "PEOPLE",
+            "target_id": "TEAM-SUPPORT",
+            "summary": "Support analysts require training on automated scoring and exception routing.",
+            "severity": "HIGH",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-IMPACT-TRAINING-001",
+                "source_artifact_id": "ATLASBRIDGE-CHANGE-SOURCE-001",
+                "source_id": "impact/training.md",
+                "source_path": "impact/training.md",
+                "source_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+                "exact_quote": "Support staff must complete the approved training module before release.",
+                "quote_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "dependency_ids": [
+              "ATLASBRIDGE-COND-TRAINING-001"
+            ],
+            "condition": null,
+            "rationale": "The selected workflow changes support handling of scoring exceptions."
+          }
+        ],
+        "indirect_impacts": [
+          {
+            "impact_id": "IMPACT-SUPPORT-SCHEDULE",
+            "impact_kind": "INDIRECT",
+            "category": "PROCESS",
+            "target_id": "PROCESS-SUPPORT-ROSTER",
+            "summary": "Training attendance changes the support roster before release.",
+            "severity": "MEDIUM",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-IMPACT-TRAINING-002",
+                "source_artifact_id": "ATLASBRIDGE-CHANGE-SOURCE-001",
+                "source_id": "impact/training.md",
+                "source_path": "impact/training.md",
+                "source_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+                "exact_quote": "Support staff must complete the approved training module before release.",
+                "quote_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "dependency_ids": [
+              "IMPACT-SUPPORT-TRAINING"
+            ],
+            "condition": null,
+            "rationale": "Training temporarily reduces roster capacity."
+          }
+        ],
+        "conditional_impacts": [],
+        "explicitly_unaffected": [
+          {
+            "impact_id": "IMPACT-FINANCE-UNAFFECTED",
+            "impact_kind": "UNAFFECTED",
+            "category": "PROCESS",
+            "target_id": "PROCESS-FINANCE-SETTLEMENT",
+            "summary": "Finance settlement remains outside the onboarding workflow boundary.",
+            "severity": "NONE",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-IMPACT-SCOPE-001",
+                "source_artifact_id": "ATLASBRIDGE-PROCESS-SOURCE-001",
+                "source_id": "process/to-be.md",
+                "source_path": "process/to-be.md",
+                "source_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+                "exact_quote": "The TO-BE workflow routes verified cases to automated risk scoring.",
+                "quote_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "dependency_ids": [],
+            "condition": null,
+            "rationale": "No finance data object, role or control is connected to the selected change nodes."
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+            "impact_ids": [
+              "IMPACT-SUPPORT-TRAINING"
+            ],
+            "obligation_type": "TRAINING",
+            "description": "Complete and evidence support training before release.",
+            "owner": "SUPPORT-LEAD",
+            "status": "SATISFIED",
+            "due_at": "2026-08-15T17:00:00Z",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "collisions": [],
+        "risks": []
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "The impact analysis does not satisfy or waive open obligations."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-evidence-bundle.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "GoLiveEvidenceBundle",
+      "artifact_id": "PASS-OPEN-GLE-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "GO_LIVE_EVIDENCE",
+      "status": "VALIDATED",
+      "produced_at": "2026-08-08T16:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/go-live-decision-agent",
+        "source_uri": "https://github.com/DameurMounir/go-live-decision-agent",
+        "release": "v0.2.0",
+        "commit_sha": "5555555555555555555555555555555555555551",
+        "tree_sha": "5555555555555555555555555555555555555552",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "RequirementsAssessment",
+          "artifact_id": "PASS-OPEN-RQA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "23858e5ea7cf4452204d397b0aaa83e0697a3d9f9aafbf4f4be1a56d03797509",
+          "chain_sha256": "478a12621fb8555c6492af5dac5161578a46ed8ab382c1dea193c6bd9bf6cd2f",
+          "relationship": "ASSEMBLES",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T12:00:00Z"
+        },
+        {
+          "artifact_type": "StakeholderAlignmentPacket",
+          "artifact_id": "PASS-OPEN-SAA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "b07466dc91ce69aacf4eb0c131893ce501890a0198161a84020a622a5195a337",
+          "chain_sha256": "09f551fff52db196d41c1aac1058ad097ef6ded7d88231a39e382f0c526bf4ab",
+          "relationship": "ASSEMBLES",
+          "status": "CONDITIONALLY_APPROVED",
+          "produced_at": "2026-08-08T13:00:00Z"
+        },
+        {
+          "artifact_type": "ProcessRedesignDecision",
+          "artifact_id": "PASS-OPEN-PRD-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "2754b27872ea810ca4c0bd438b02cf30de55f7340fd183e02416d93bcb77edc9",
+          "chain_sha256": "9d4496a2b14be6c8fcd2619803c690a317976761481f71b9d8d4fbdbfe57f19d",
+          "relationship": "ASSEMBLES",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T14:00:00Z"
+        },
+        {
+          "artifact_type": "ChangeImpactPacket",
+          "artifact_id": "PASS-OPEN-BCI-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "df47b72e087e6290a3c86cd1027e366cb7d6a98446676ad88624b95a5fd0e148",
+          "chain_sha256": "52ce9a595bd474a4b2bab07e0fd85a6b50f8c7585f275b466c42464b1ed9a872",
+          "relationship": "ASSEMBLES",
+          "status": "VALIDATED",
+          "produced_at": "2026-08-08T15:00:00Z"
+        }
+      ],
+      "authority": null,
+      "payload_sha256": "56724cf6fe2dcc3e247c4d2fb58090479c5d86369e2aac44347ee28211e9168c",
+      "artifact_sha256": "7adeb588d227741f544406fe51128f05b4890d919c67bb3e25adcee2ce6a947e",
+      "chain_sha256": "e7007e736662ebf00e5b47ab7e88095fea9a4c81e44be8f3f6a5611bd91aa01b",
+      "payload": {
+        "bundle_id": "ATLASBRIDGE-GO-LIVE-BUNDLE-001",
+        "release_candidate": {
+          "release_candidate_id": "ATLASBRIDGE-ONBOARDING-2",
+          "version": "2.0.0",
+          "scope_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+        },
+        "operational_evidence": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          },
+          {
+            "evidence_id": "EVID-TRAINING-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/training-complete.md",
+            "source_path": "operational/training-complete.md",
+            "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+            "exact_quote": "All support analysts completed the approved training and assessment.",
+            "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          },
+          {
+            "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/rollback.md",
+            "source_path": "operational/rollback.md",
+            "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "exact_quote": "Production-like rollback rehearsal completed successfully.",
+            "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_conditions": [
+          {
+            "source_artifact_id": "PASS-OPEN-SAA-ATLASBRIDGE-001",
+            "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+            "description": "Complete and evidence support training before go-live.",
+            "status": "OPEN",
+            "evidence_refs": []
+          }
+        ],
+        "upstream_obligations": [
+          {
+            "source_artifact_id": "PASS-OPEN-BCI-ATLASBRIDGE-001",
+            "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+            "description": "Complete and evidence support training before release.",
+            "status": "SATISFIED",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "gate_evidence": [
+          {
+            "gate_id": "G-01",
+            "gate_name": "RELEASE_IDENTITY_AND_SCOPE",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-PRD-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-02",
+            "gate_name": "BUSINESS_ACCEPTANCE",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-03",
+            "gate_name": "FUNCTIONAL_ACCEPTANCE",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-04",
+            "gate_name": "SECURITY_VERIFICATION",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-05",
+            "gate_name": "PRIVACY_AND_DATA_PROTECTION",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-SAA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-06",
+            "gate_name": "DATA_MIGRATION",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-07",
+            "gate_name": "PERFORMANCE_AND_CAPACITY",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-08",
+            "gate_name": "RELIABILITY_AND_RECOVERY",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-09",
+            "gate_name": "OBSERVABILITY_AND_INCIDENT_RESPONSE",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-10",
+            "gate_name": "SUPPORT_READINESS",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-11",
+            "gate_name": "TRAINING_AND_COMMUNICATIONS",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-12",
+            "gate_name": "ROLLBACK_AND_ROLLFORWARD",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/rollback.md",
+                "source_path": "operational/rollback.md",
+                "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+                "exact_quote": "Production-like rollback rehearsal completed successfully.",
+                "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-13",
+            "gate_name": "EXTERNAL_DEPENDENCIES",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          },
+          {
+            "gate_id": "G-14",
+            "gate_name": "RELEASE_AUTHORITY_AND_WINDOW",
+            "availability": "AVAILABLE",
+            "source_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "gap_reason": null
+          }
+        ],
+        "bundle_manifest_sha256": "1706b969c5508546100e66c5bd897c8377743f70b7216662a988aacf2a549e83"
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "The bundle preserves an open training condition and is not release authorization."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-decision-packet.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "GoLiveDecisionPacket",
+      "artifact_id": "PASS-OPEN-GLD-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "GO_LIVE_DECISION",
+      "status": "APPROVED",
+      "produced_at": "2026-08-08T17:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/go-live-decision-agent",
+        "source_uri": "https://github.com/DameurMounir/go-live-decision-agent",
+        "release": "v0.2.0",
+        "commit_sha": "5555555555555555555555555555555555555551",
+        "tree_sha": "5555555555555555555555555555555555555552",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "GoLiveEvidenceBundle",
+          "artifact_id": "PASS-OPEN-GLE-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "7adeb588d227741f544406fe51128f05b4890d919c67bb3e25adcee2ce6a947e",
+          "chain_sha256": "e7007e736662ebf00e5b47ab7e88095fea9a4c81e44be8f3f6a5611bd91aa01b",
+          "relationship": "DERIVED_FROM",
+          "status": "VALIDATED",
+          "produced_at": "2026-08-08T16:00:00Z"
+        }
+      ],
+      "authority": {
+        "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+        "actor_id": "ATLASBRIDGE-RELEASE-CHAIR",
+        "role": "RELEASE_DECISION_OWNER",
+        "authority_scope": "GO_LIVE_READINESS_ADJUDICATION",
+        "action": "ADJUDICATE",
+        "outcome": "APPROVED",
+        "rationale": "The governed readiness result is PASS.",
+        "conditions": [],
+        "artifact_digest": "53cd78734314e55f8684bc27291bb21c23adec5bb66c6841636fefb38274313f",
+        "recorded_at": "2026-08-08T16:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "ce89f2e55c237f65d3f1a57b6f0e726bfc03ac59b6ae40849a501a5566a3360a",
+      "artifact_sha256": "5e7f4929acfd3b373cb75a9edf504e232dc0a997ef34fb2b5d5d685b0ecf2dc6",
+      "chain_sha256": "4952bf2f78c4d4ba9e8a08be26530fcbb64d1cb5ab80b10c3bc5c64850279d6b",
+      "payload": {
+        "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+        "release_candidate": {
+          "release_candidate_id": "ATLASBRIDGE-ONBOARDING-2",
+          "version": "2.0.0",
+          "scope_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+        },
+        "policy": {
+          "policy_id": "ATLASBRIDGE-GO-LIVE-POLICY",
+          "version": "1.0.0",
+          "sha256": "049ec55414568fd88614e33569a79a668b03f55a68d01f252e16bc092916fd45"
+        },
+        "evidence_bundle_sha256": "7adeb588d227741f544406fe51128f05b4890d919c67bb3e25adcee2ce6a947e",
+        "portfolio_chain_sha256": "e7007e736662ebf00e5b47ab7e88095fea9a4c81e44be8f3f6a5611bd91aa01b",
+        "gate_results": [
+          {
+            "gate_id": "G-01",
+            "gate_name": "RELEASE_IDENTITY_AND_SCOPE",
+            "outcome": "PASS",
+            "rationale": "G-01 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-PRD-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-02",
+            "gate_name": "BUSINESS_ACCEPTANCE",
+            "outcome": "PASS",
+            "rationale": "G-02 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-03",
+            "gate_name": "FUNCTIONAL_ACCEPTANCE",
+            "outcome": "PASS",
+            "rationale": "G-03 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-04",
+            "gate_name": "SECURITY_VERIFICATION",
+            "outcome": "PASS",
+            "rationale": "G-04 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-05",
+            "gate_name": "PRIVACY_AND_DATA_PROTECTION",
+            "outcome": "PASS",
+            "rationale": "G-05 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-RQA-ATLASBRIDGE-001",
+              "PASS-OPEN-SAA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-06",
+            "gate_name": "DATA_MIGRATION",
+            "outcome": "PASS",
+            "rationale": "G-06 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-07",
+            "gate_name": "PERFORMANCE_AND_CAPACITY",
+            "outcome": "PASS",
+            "rationale": "G-07 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-08",
+            "gate_name": "RELIABILITY_AND_RECOVERY",
+            "outcome": "PASS",
+            "rationale": "G-08 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-09",
+            "gate_name": "OBSERVABILITY_AND_INCIDENT_RESPONSE",
+            "outcome": "PASS",
+            "rationale": "G-09 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-10",
+            "gate_name": "SUPPORT_READINESS",
+            "outcome": "PASS",
+            "rationale": "G-10 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-11",
+            "gate_name": "TRAINING_AND_COMMUNICATIONS",
+            "outcome": "PASS",
+            "rationale": "G-11 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001",
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-12",
+            "gate_name": "ROLLBACK_AND_ROLLFORWARD",
+            "outcome": "PASS",
+            "rationale": "G-12 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/rollback.md",
+                "source_path": "operational/rollback.md",
+                "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+                "exact_quote": "Production-like rollback rehearsal completed successfully.",
+                "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-PRD-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-13",
+            "gate_name": "EXTERNAL_DEPENDENCIES",
+            "outcome": "PASS",
+            "rationale": "G-13 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-BCI-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          },
+          {
+            "gate_id": "G-14",
+            "gate_name": "RELEASE_AUTHORITY_AND_WINDOW",
+            "outcome": "PASS",
+            "rationale": "G-14 produced governed outcome PASS.",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-READINESS-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/readiness-complete.md",
+                "source_path": "operational/readiness-complete.md",
+                "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "exact_quote": "The registered readiness control set completed verification for this candidate.",
+                "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ],
+            "upstream_artifact_ids": [
+              "PASS-OPEN-SAA-ATLASBRIDGE-001"
+            ],
+            "required_actions": []
+          }
+        ],
+        "failed_gates": [],
+        "blocked_gates": [],
+        "passed_gates": [
+          "G-01",
+          "G-02",
+          "G-03",
+          "G-04",
+          "G-05",
+          "G-06",
+          "G-07",
+          "G-08",
+          "G-09",
+          "G-10",
+          "G-11",
+          "G-12",
+          "G-13",
+          "G-14"
+        ],
+        "required_actions": [],
+        "residual_risks": [],
+        "final_decision": "PASS",
+        "upstream_conditions": [
+          {
+            "source_artifact_id": "PASS-OPEN-SAA-ATLASBRIDGE-001",
+            "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+            "description": "Complete and evidence support training before go-live.",
+            "status": "OPEN",
+            "evidence_refs": []
+          }
+        ],
+        "upstream_obligations": [
+          {
+            "source_artifact_id": "PASS-OPEN-BCI-ATLASBRIDGE-001",
+            "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+            "description": "Complete and evidence support training before release.",
+            "status": "SATISFIED",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "superseded_artifacts": [],
+        "decision": {
+          "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+          "actor_id": "ATLASBRIDGE-RELEASE-CHAIR",
+          "role": "RELEASE_DECISION_OWNER",
+          "authority_scope": "GO_LIVE_READINESS_ADJUDICATION",
+          "action": "ADJUDICATE",
+          "outcome": "APPROVED",
+          "rationale": "The governed readiness result is PASS.",
+          "conditions": [],
+          "artifact_digest": "53cd78734314e55f8684bc27291bb21c23adec5bb66c6841636fefb38274313f",
+          "recorded_at": "2026-08-08T16:55:00Z",
+          "review_round": 1
+        },
+        "execution_authorized": false,
+        "execution_authority": null
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "BLOCKED is a readiness outcome and no production execution is authorized."
+      ]
+    }
+  ]
+}

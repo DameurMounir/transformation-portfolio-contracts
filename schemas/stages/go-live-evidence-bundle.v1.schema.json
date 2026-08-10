@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-evidence-bundle.v1.schema.json",
+  "title": "GoLiveEvidenceBundle.v1",
+  "description": "The immutable four-stage lineage plus operational evidence evaluated by the go-live decision stage. A rebuilt bundle remains VALIDATED and may carry an IMMUTABLE_REPLACEMENT supersession pointer to the unchanged older bundle.",
+  "allOf": [
+    {"$ref": "../common/artifact-envelope.v1.schema.json"},
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {"const": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-evidence-bundle.v1.schema.json"},
+        "artifact_type": {"const": "GoLiveEvidenceBundle"},
+        "stage": {"const": "GO_LIVE_EVIDENCE"},
+        "status": {"const": "VALIDATED"},
+        "authority": {"type": "null"},
+        "inputs": {
+          "minItems": 4,
+          "maxItems": 4,
+          "allOf": [
+            {"$ref": "#/$defs/requiresRequirements"},
+            {"$ref": "#/$defs/requiresAlignment"},
+            {"$ref": "#/$defs/requiresRedesign"},
+            {"$ref": "#/$defs/requiresImpact"}
+          ]
+        },
+        "payload": {"$ref": "#/$defs/payload"}
+      }
+    }
+  ],
+  "$defs": {
+    "requiresRequirements": {
+      "contains": {
+        "required": ["artifact_type", "relationship"],
+        "properties": {"artifact_type": {"const": "RequirementsAssessment"}, "relationship": {"const": "ASSEMBLES"}}
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "requiresAlignment": {
+      "contains": {
+        "required": ["artifact_type", "relationship"],
+        "properties": {"artifact_type": {"const": "StakeholderAlignmentPacket"}, "relationship": {"const": "ASSEMBLES"}}
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "requiresRedesign": {
+      "contains": {
+        "required": ["artifact_type", "relationship"],
+        "properties": {"artifact_type": {"const": "ProcessRedesignDecision"}, "relationship": {"const": "ASSEMBLES"}}
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "requiresImpact": {
+      "contains": {
+        "required": ["artifact_type", "relationship"],
+        "properties": {"artifact_type": {"const": "ChangeImpactPacket"}, "relationship": {"const": "ASSEMBLES"}}
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_id",
+        "release_candidate",
+        "operational_evidence",
+        "upstream_conditions",
+        "upstream_obligations",
+        "gate_evidence",
+        "bundle_manifest_sha256"
+      ],
+      "properties": {
+        "bundle_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "release_candidate": {"$ref": "#/$defs/releaseCandidate"},
+        "operational_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "items": {"$ref": "../common/evidence-reference.v1.schema.json"}
+        },
+        "upstream_conditions": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {"$ref": "#/$defs/upstreamCondition"}
+        },
+        "upstream_obligations": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {"$ref": "#/$defs/upstreamObligation"}
+        },
+        "gate_evidence": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "items": {"$ref": "#/$defs/gateEvidence"}
+        },
+        "bundle_manifest_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"}
+      }
+    },
+    "releaseCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["release_candidate_id", "version", "scope_sha256"],
+      "properties": {
+        "release_candidate_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "version": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/semver"},
+        "scope_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"}
+      }
+    },
+    "upstreamCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_artifact_id", "condition_id", "description", "status", "evidence_refs"],
+      "properties": {
+        "source_artifact_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "condition_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "status": {"type": "string", "enum": ["OPEN", "SATISFIED", "WAIVED"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "../common/evidence-reference.v1.schema.json"}}
+      }
+    },
+    "upstreamObligation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_artifact_id", "obligation_id", "description", "status", "evidence_refs"],
+      "properties": {
+        "source_artifact_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "obligation_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "status": {"type": "string", "enum": ["OPEN", "IN_PROGRESS", "SATISFIED", "WAIVED"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "../common/evidence-reference.v1.schema.json"}}
+      }
+    },
+    "gateEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "gate_name", "availability", "source_artifact_ids", "evidence_refs", "gap_reason"],
+      "properties": {
+        "gate_id": {"$ref": "#/$defs/gateId"},
+        "gate_name": {"$ref": "#/$defs/gateName"},
+        "availability": {"type": "string", "enum": ["AVAILABLE", "INCOMPLETE", "MISSING"]},
+        "source_artifact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+        },
+        "evidence_refs": {"type": "array", "items": {"$ref": "../common/evidence-reference.v1.schema.json"}},
+        "gap_reason": {"type": ["string", "null"], "maxLength": 4000}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"const": "AVAILABLE"}}, "required": ["availability"]},
+          "then": {"properties": {"evidence_refs": {"minItems": 1}, "gap_reason": {"type": "null"}}},
+          "else": {"properties": {"gap_reason": {"type": "string", "minLength": 1}}}
+        }
+      ]
+    },
+    "gateId": {"type": "string", "enum": ["G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09", "G-10", "G-11", "G-12", "G-13", "G-14"]},
+    "gateName": {
+      "type": "string",
+      "enum": [
+        "RELEASE_IDENTITY_AND_SCOPE",
+        "BUSINESS_ACCEPTANCE",
+        "FUNCTIONAL_ACCEPTANCE",
+        "SECURITY_VERIFICATION",
+        "PRIVACY_AND_DATA_PROTECTION",
+        "DATA_MIGRATION",
+        "PERFORMANCE_AND_CAPACITY",
+        "RELIABILITY_AND_RECOVERY",
+        "OBSERVABILITY_AND_INCIDENT_RESPONSE",
+        "SUPPORT_READINESS",
+        "TRAINING_AND_COMMUNICATIONS",
+        "ROLLBACK_AND_ROLLFORWARD",
+        "EXTERNAL_DEPENDENCIES",
+        "RELEASE_AUTHORITY_AND_WINDOW"
+      ]
+    }
+  }
+}

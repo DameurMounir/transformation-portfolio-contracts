@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-decision-packet.v1.schema.json",
+  "title": "GoLiveDecisionPacket.v1",
+  "description": "A human-reviewed PASS, BLOCKED or FAIL readiness decision traced through fourteen gates. A replacement retains the status implied by its own gate outcome and may carry an IMMUTABLE_REPLACEMENT supersession pointer to the unchanged older decision packet.",
+  "allOf": [
+    {"$ref": "../common/artifact-envelope.v1.schema.json"},
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {"const": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-decision-packet.v1.schema.json"},
+        "artifact_type": {"const": "GoLiveDecisionPacket"},
+        "stage": {"const": "GO_LIVE_DECISION"},
+        "status": {"enum": ["APPROVED", "BLOCKED", "REJECTED"]},
+        "inputs": {
+          "minItems": 1,
+          "maxItems": 1,
+          "contains": {
+            "required": ["artifact_type", "relationship"],
+            "properties": {
+              "artifact_type": {"const": "GoLiveEvidenceBundle"},
+              "relationship": {"const": "DERIVED_FROM"}
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        "authority": {"$ref": "../common/human-decision.v1.schema.json"},
+        "payload": {"$ref": "#/$defs/payload"}
+      }
+    }
+  ],
+  "$defs": {
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "release_candidate",
+        "policy",
+        "evidence_bundle_sha256",
+        "portfolio_chain_sha256",
+        "gate_results",
+        "failed_gates",
+        "blocked_gates",
+        "passed_gates",
+        "required_actions",
+        "residual_risks",
+        "final_decision",
+        "upstream_conditions",
+        "upstream_obligations",
+        "superseded_artifacts",
+        "decision",
+        "execution_authorized",
+        "execution_authority"
+      ],
+      "properties": {
+        "decision_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "release_candidate": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/releaseCandidate"},
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy_id", "version", "sha256"],
+          "properties": {
+            "policy_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+            "version": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/semver"},
+            "sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"}
+          }
+        },
+        "evidence_bundle_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+        "portfolio_chain_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+        "gate_results": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "items": {"$ref": "#/$defs/gateResult"}
+        },
+        "failed_gates": {"$ref": "#/$defs/gateIds"},
+        "blocked_gates": {"$ref": "#/$defs/gateIds"},
+        "passed_gates": {"$ref": "#/$defs/gateIds"},
+        "required_actions": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {"$ref": "#/$defs/requiredAction"}
+        },
+        "residual_risks": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {"$ref": "../common/risk-envelope.v1.schema.json"}
+        },
+        "final_decision": {"type": "string", "enum": ["PASS", "BLOCKED", "FAIL"]},
+        "upstream_conditions": {
+          "type": "array",
+          "items": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/upstreamCondition"}
+        },
+        "upstream_obligations": {
+          "type": "array",
+          "items": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/upstreamObligation"}
+        },
+        "superseded_artifacts": {
+          "type": "array",
+          "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/artifactReference"}
+        },
+        "decision": {"$ref": "../common/human-decision.v1.schema.json"},
+        "execution_authorized": {"type": "boolean"},
+        "execution_authority": {
+          "oneOf": [
+            {"$ref": "../common/human-decision.v1.schema.json"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"final_decision": {"const": "PASS"}}, "required": ["final_decision"]},
+          "then": {
+            "properties": {
+              "failed_gates": {"maxItems": 0},
+              "blocked_gates": {"maxItems": 0},
+              "decision": {"properties": {"outcome": {"const": "APPROVED"}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"final_decision": {"const": "BLOCKED"}}, "required": ["final_decision"]},
+          "then": {
+            "properties": {
+              "blocked_gates": {"minItems": 1},
+              "decision": {"properties": {"outcome": {"const": "CONDITIONAL"}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"final_decision": {"const": "FAIL"}}, "required": ["final_decision"]},
+          "then": {
+            "properties": {
+              "failed_gates": {"minItems": 1},
+              "decision": {"properties": {"outcome": {"const": "REJECTED"}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"execution_authorized": {"const": true}}, "required": ["execution_authorized"]},
+          "then": {
+            "properties": {
+              "final_decision": {"const": "PASS"},
+              "execution_authority": {
+                "allOf": [
+                  {"$ref": "../common/human-decision.v1.schema.json"},
+                  {"properties": {"action": {"const": "AUTHORIZE_RELEASE"}, "outcome": {"const": "APPROVED"}}}
+                ]
+              }
+            }
+          },
+          "else": {"properties": {"execution_authority": {"type": "null"}}}
+        }
+      ]
+    },
+    "gateIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 14,
+      "items": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/gateId"}
+    },
+    "gateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "gate_name", "outcome", "rationale", "evidence_refs", "upstream_artifact_ids", "required_actions"],
+      "properties": {
+        "gate_id": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/gateId"},
+        "gate_name": {"$ref": "go-live-evidence-bundle.v1.schema.json#/$defs/gateName"},
+        "outcome": {"type": "string", "enum": ["PASS", "BLOCKED", "FAIL"]},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "evidence_refs": {"type": "array", "items": {"$ref": "../common/evidence-reference.v1.schema.json"}},
+        "upstream_artifact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+        },
+        "required_actions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/requiredAction"}
+        }
+      }
+    },
+    "requiredAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "description", "owner", "status", "due_at"],
+      "properties": {
+        "action_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "owner": {"type": "string", "minLength": 1, "maxLength": 128},
+        "status": {"type": "string", "enum": ["OPEN", "IN_PROGRESS", "COMPLETED", "WAIVED"]},
+        "due_at": {
+          "oneOf": [
+            {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/utcTimestamp"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

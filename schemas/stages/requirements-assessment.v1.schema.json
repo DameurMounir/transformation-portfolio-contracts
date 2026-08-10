@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/requirements-assessment.v1.schema.json",
+  "title": "RequirementsAssessment.v1",
+  "description": "A human-reviewed assessment of a stable requirements baseline. A replacement remains HUMAN_CONFIRMED and may use envelope supersession.semantics=IMMUTABLE_REPLACEMENT to point to the immutable older assessment.",
+  "allOf": [
+    {"$ref": "../common/artifact-envelope.v1.schema.json"},
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {"const": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/requirements-assessment.v1.schema.json"},
+        "artifact_type": {"const": "RequirementsAssessment"},
+        "stage": {"const": "REQUIREMENTS_QUALITY"},
+        "status": {"const": "HUMAN_CONFIRMED"},
+        "inputs": {"maxItems": 0},
+        "authority": {"$ref": "../common/human-decision.v1.schema.json"},
+        "payload": {"$ref": "#/$defs/payload"}
+      }
+    }
+  ],
+  "$defs": {
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirements_baseline_id",
+        "source_pack_sha256",
+        "requirements",
+        "findings",
+        "open_clarification_questions",
+        "approved_revisions",
+        "critical_unresolved_count",
+        "scorecard",
+        "analysis_provenance",
+        "human_review"
+      ],
+      "properties": {
+        "requirements_baseline_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "source_pack_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requirement_id", "statement", "status", "priority", "evidence_refs"],
+            "properties": {
+              "requirement_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "statement": {"type": "string", "minLength": 1, "maxLength": 10000},
+              "status": {"type": "string", "enum": ["CONFIRMED", "NEEDS_CLARIFICATION", "REJECTED"]},
+              "priority": {"type": "string", "enum": ["MUST", "SHOULD", "COULD", "WONT"]},
+              "evidence_refs": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 100,
+                "items": {"$ref": "../common/evidence-reference.v1.schema.json"}
+              }
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {"$ref": "../common/finding.v1.schema.json"}
+        },
+        "open_clarification_questions": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["question_id", "requirement_ids", "question", "owner"],
+            "properties": {
+              "question_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "requirement_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+              },
+              "question": {"type": "string", "minLength": 1, "maxLength": 4000},
+              "owner": {"type": "string", "minLength": 1, "maxLength": 128}
+            }
+          }
+        },
+        "approved_revisions": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["revision_id", "requirement_id", "original_sha256", "revised_statement", "approval"],
+            "properties": {
+              "revision_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "requirement_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "original_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+              "revised_statement": {"type": "string", "minLength": 1, "maxLength": 10000},
+              "approval": {"$ref": "../common/human-decision.v1.schema.json"}
+            }
+          }
+        },
+        "critical_unresolved_count": {"type": "integer", "minimum": 0, "maximum": 1000000},
+        "scorecard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["total_requirements", "confirmed", "unresolved", "rejected", "quality_score_basis_points"],
+          "properties": {
+            "total_requirements": {"type": "integer", "minimum": 1, "maximum": 1000000},
+            "confirmed": {"type": "integer", "minimum": 0, "maximum": 1000000},
+            "unresolved": {"type": "integer", "minimum": 0, "maximum": 1000000},
+            "rejected": {"type": "integer", "minimum": 0, "maximum": 1000000},
+            "quality_score_basis_points": {"type": "integer", "minimum": 0, "maximum": 10000}
+          }
+        },
+        "analysis_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["analysis_method", "rulebook_sha256", "analysis_sha256"],
+          "properties": {
+            "analysis_method": {"type": "string", "minLength": 1, "maxLength": 256},
+            "rulebook_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+            "analysis_sha256": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"}
+          }
+        },
+        "human_review": {"$ref": "../common/human-decision.v1.schema.json"}
+      }
+    }
+  }
+}

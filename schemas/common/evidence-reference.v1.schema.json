@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/common/evidence-reference.v1.schema.json",
+  "title": "EvidenceReference.v1",
+  "description": "An immutable, quote-level reference to source evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "source_artifact_id",
+    "source_id",
+    "source_sha256",
+    "exact_quote",
+    "quote_sha256",
+    "location",
+    "evidence_verdict"
+  ],
+  "properties": {
+    "evidence_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "source_artifact_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "source_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "source_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "source_uri": {"type": "string", "format": "uri", "maxLength": 2048},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "exact_quote": {"type": "string", "minLength": 1, "maxLength": 20000},
+    "quote_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start_line": {"type": "integer", "minimum": 1},
+        "end_line": {"type": "integer", "minimum": 1},
+        "start_character": {"type": "integer", "minimum": 0},
+        "end_character": {"type": "integer", "minimum": 1}
+      },
+      "oneOf": [
+        {
+          "required": ["start_line", "end_line"],
+          "not": {"anyOf": [{"required": ["start_character"]}, {"required": ["end_character"]}]}
+        },
+        {
+          "required": ["start_character", "end_character"],
+          "not": {"anyOf": [{"required": ["start_line"]}, {"required": ["end_line"]}]}
+        }
+      ]
+    },
+    "evidence_verdict": {
+      "type": "string",
+      "enum": ["SUPPORTS", "CONTRADICTS", "INCONCLUSIVE"]
+    }
+  },
+  "oneOf": [
+    {"required": ["source_path"], "not": {"required": ["source_uri"]}},
+    {"required": ["source_uri"], "not": {"required": ["source_path"]}}
+  ]
+}

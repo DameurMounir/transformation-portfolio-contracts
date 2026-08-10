@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/stakeholder-alignment-packet.v1.schema.json",
+  "title": "StakeholderAlignmentPacket.v1",
+  "description": "A digest-bound stakeholder agreement, dispute and decision packet. A replacement retains its normal decision status and may carry an IMMUTABLE_REPLACEMENT supersession pointer to the unchanged older packet.",
+  "allOf": [
+    {"$ref": "../common/artifact-envelope.v1.schema.json"},
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {"const": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/stakeholder-alignment-packet.v1.schema.json"},
+        "artifact_type": {"const": "StakeholderAlignmentPacket"},
+        "stage": {"const": "STAKEHOLDER_ALIGNMENT"},
+        "status": {"enum": ["HUMAN_CONFIRMED", "CONDITIONALLY_APPROVED", "REJECTED"]},
+        "inputs": {
+          "minItems": 1,
+          "maxItems": 1,
+          "contains": {
+            "type": "object",
+            "required": ["artifact_type", "relationship"],
+            "properties": {
+              "artifact_type": {"const": "RequirementsAssessment"},
+              "relationship": {"const": "DERIVED_FROM"}
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        "authority": {"$ref": "../common/human-decision.v1.schema.json"},
+        "payload": {"$ref": "#/$defs/payload"}
+      }
+    }
+  ],
+  "$defs": {
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alignment_decision_id",
+        "requirements_baseline_id",
+        "agreed_requirement_ids",
+        "disputed_requirement_ids",
+        "undecided_requirement_ids",
+        "alignment_issues",
+        "options",
+        "selected_option_id",
+        "scoped_approvals",
+        "open_conditions",
+        "sponsor_outcome",
+        "decision_digest",
+        "decision"
+      ],
+      "properties": {
+        "alignment_decision_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "requirements_baseline_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "agreed_requirement_ids": {"$ref": "#/$defs/requirementIds"},
+        "disputed_requirement_ids": {"$ref": "#/$defs/requirementIds"},
+        "undecided_requirement_ids": {"$ref": "#/$defs/requirementIds"},
+        "alignment_issues": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["issue_id", "requirement_ids", "status", "summary", "option_ids", "evidence_refs"],
+            "properties": {
+              "issue_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "requirement_ids": {"$ref": "#/$defs/requirementIds"},
+              "status": {"type": "string", "enum": ["AGREED", "DISPUTED", "UNDECIDED"]},
+              "summary": {"type": "string", "minLength": 1, "maxLength": 4000},
+              "option_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+              },
+              "evidence_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "../common/evidence-reference.v1.schema.json"}
+              }
+            }
+          }
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["option_id", "title", "description", "conditions"],
+            "properties": {
+              "option_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+              "title": {"type": "string", "minLength": 1, "maxLength": 500},
+              "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+              "conditions": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+              }
+            }
+          }
+        },
+        "selected_option_id": {
+          "oneOf": [
+            {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+            {"type": "null"}
+          ]
+        },
+        "scoped_approvals": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1000,
+          "items": {"$ref": "../common/human-decision.v1.schema.json"}
+        },
+        "open_conditions": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {"$ref": "#/$defs/condition"}
+        },
+        "sponsor_outcome": {"type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO", "UNDECIDED"]},
+        "decision_digest": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/sha256"},
+        "decision": {"$ref": "../common/human-decision.v1.schema.json"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"sponsor_outcome": {"enum": ["GO", "CONDITIONAL_GO"]}},
+            "required": ["sponsor_outcome"]
+          },
+          "then": {"properties": {"selected_option_id": {"type": "string"}}}
+        },
+        {
+          "if": {
+            "properties": {"sponsor_outcome": {"const": "CONDITIONAL_GO"}},
+            "required": ["sponsor_outcome"]
+          },
+          "then": {
+            "properties": {
+              "open_conditions": {
+                "minItems": 1,
+                "contains": {"properties": {"status": {"const": "OPEN"}}, "required": ["status"]},
+                "minContains": 1
+              },
+              "decision": {"properties": {"outcome": {"const": "CONDITIONAL"}}}
+            }
+          }
+        }
+      ]
+    },
+    "requirementIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 10000,
+      "items": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"}
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["condition_id", "description", "owner", "due_at", "status", "evidence_refs"],
+      "properties": {
+        "condition_id": {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/stableId"},
+        "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "owner": {"type": "string", "minLength": 1, "maxLength": 128},
+        "due_at": {
+          "oneOf": [
+            {"$ref": "../common/artifact-envelope.v1.schema.json#/$defs/utcTimestamp"},
+            {"type": "null"}
+          ]
+        },
+        "status": {"type": "string", "enum": ["OPEN", "SATISFIED", "WAIVED"]},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "../common/evidence-reference.v1.schema.json"}
+        }
+      }
+    }
+  }
+}

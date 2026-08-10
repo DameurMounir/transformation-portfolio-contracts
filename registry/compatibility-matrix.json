@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.0.0",
+  "generated_at": "2026-08-10T00:00:00Z",
+  "contracts_release": "v1.0.0",
+  "rules": [
+    {"producer_contract": "RequirementsAssessment.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "StakeholderAlignmentPacket.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED"], "relationship": "DERIVED_FROM", "compatibility": "SUPPORTED"},
+    {"producer_contract": "RequirementsAssessment.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "ProcessRedesignDecision.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED"], "relationship": "DERIVED_FROM", "compatibility": "SUPPORTED"},
+    {"producer_contract": "StakeholderAlignmentPacket.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "ProcessRedesignDecision.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED", "CONDITIONALLY_APPROVED"], "relationship": "CONSTRAINED_BY", "compatibility": "SUPPORTED"},
+    {"producer_contract": "ProcessRedesignDecision.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "ChangeImpactPacket.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED"], "relationship": "DERIVED_FROM", "compatibility": "SUPPORTED"},
+    {"producer_contract": "RequirementsAssessment.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "GoLiveEvidenceBundle.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED"], "relationship": "ASSEMBLES", "compatibility": "SUPPORTED"},
+    {"producer_contract": "StakeholderAlignmentPacket.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "GoLiveEvidenceBundle.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED", "CONDITIONALLY_APPROVED"], "relationship": "ASSEMBLES", "compatibility": "SUPPORTED"},
+    {"producer_contract": "ProcessRedesignDecision.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "GoLiveEvidenceBundle.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["HUMAN_CONFIRMED"], "relationship": "ASSEMBLES", "compatibility": "SUPPORTED"},
+    {"producer_contract": "ChangeImpactPacket.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "GoLiveEvidenceBundle.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["VALIDATED"], "relationship": "ASSEMBLES", "compatibility": "SUPPORTED"},
+    {"producer_contract": "GoLiveEvidenceBundle.v1", "producer_version": "1.0.0", "producer_release": "v0.2.0", "consumer_contract": "GoLiveDecisionPacket.v1", "consumer_version": "1.0.0", "consumer_release": "v0.2.0", "accepted_input_versions": ["1.0.0"], "accepted_statuses": ["VALIDATED"], "relationship": "DERIVED_FROM", "compatibility": "SUPPORTED"}
+  ],
+  "fail_closed_rules": [
+    {"code": "SCHEMA_INVALID", "description": "Reject any upstream document that does not validate against its registered schema."},
+    {"code": "DIGEST_MISMATCH", "description": "Reject payload, artifact, input or chain digest mismatch."},
+    {"code": "IDENTITY_MISMATCH", "description": "Reject transformation, case or release-candidate identity mismatch."},
+    {"code": "UNSUPPORTED_CONTRACT_MAJOR", "description": "Reject any contract major not explicitly listed as supported."},
+    {"code": "INELIGIBLE_STATUS", "description": "Reject DRAFT, REJECTED and SUPERSEDED upstream artifacts."},
+    {"code": "AUTHORITY_MISSING", "description": "Reject a human-governed lifecycle state without its scoped human decision."},
+    {"code": "MISSING_UPSTREAM", "description": "Reject a required upstream artifact that cannot be resolved exactly once."},
+    {"code": "DUPLICATE_ARTIFACT_CONFLICT", "description": "Reject the same artifact ID when different content is observed."},
+    {"code": "LINEAGE_CYCLE", "description": "Reject cyclic or self-referential lineage."},
+    {"code": "TEMPORAL_ORDER", "description": "Reject a downstream artifact produced before any input it claims to consume."},
+    {"code": "STALE_INPUT", "description": "Reject a downstream reference whose digest no longer matches the resolved upstream artifact."}
+  ]
+}

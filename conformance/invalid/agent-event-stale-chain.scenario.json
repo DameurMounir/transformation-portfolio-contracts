@@ -1,0 +1,44 @@
+{
+  "case_id": "AGENT-EVENT-STALE",
+  "description": "Event predecessor digest cannot be resolved.",
+  "events": [
+    {
+      "event_id": "EVENT-ATLASBRIDGE-ROOT",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "correlation_id": "CORRELATION-ATLASBRIDGE-001",
+      "causation_id": null,
+      "stage": "PORTFOLIO",
+      "event_type": "TRANSFORMATION_STARTED",
+      "actor_type": "SYSTEM",
+      "actor_id": "PORTFOLIO-RUNNER",
+      "artifact_ref": null,
+      "occurred_at": "2026-08-08T09:00:00Z",
+      "previous_event_digest": null,
+      "event_digest": "53406bc6c0b02c518e95a17644b1836e727facd4d0cfbf63e58da90cc4b49e51"
+    },
+    {
+      "event_id": "EVENT-ATLASBRIDGE-REQUIREMENTS",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "correlation_id": "CORRELATION-ATLASBRIDGE-001",
+      "causation_id": "EVENT-ATLASBRIDGE-ROOT",
+      "stage": "REQUIREMENTS_QUALITY",
+      "event_type": "ARTIFACT_PRODUCED",
+      "actor_type": "AGENT",
+      "actor_id": "REQUIREMENTS-QUALITY-AGENT",
+      "artifact_ref": {
+        "artifact_type": "RequirementsAssessment",
+        "artifact_id": "PASS-RQA-ATLASBRIDGE-001",
+        "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+        "schema_version": "1.0.0",
+        "sha256": "6faa1e82f70cb004af2a01bd7ffd151436e2069e316f74a28ce039f79b018375",
+        "chain_sha256": "44dc2d0b53f77279300b3e6f0927feabbd4885271967562908b7f6d037978c57",
+        "relationship": "EVIDENCED_BY",
+        "status": "HUMAN_CONFIRMED",
+        "produced_at": "2026-08-08T12:00:00Z"
+      },
+      "occurred_at": "2026-08-08T12:00:01Z",
+      "previous_event_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "event_digest": "5d58d9ecf10b0a8def52d3ae9a1f2fa0b97e770826617579bf42a4d8f9a88a07"
+    }
+  ]
+}

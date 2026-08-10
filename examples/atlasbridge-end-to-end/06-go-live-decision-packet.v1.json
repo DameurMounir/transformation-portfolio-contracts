@@ -1,0 +1,502 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-decision-packet.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "GoLiveDecisionPacket",
+  "artifact_id": "GLD-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "GO_LIVE_DECISION",
+  "status": "BLOCKED",
+  "produced_at": "2026-08-08T17:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/go-live-decision-agent",
+    "source_uri": "https://github.com/DameurMounir/go-live-decision-agent",
+    "release": "v0.2.0",
+    "commit_sha": "5555555555555555555555555555555555555551",
+    "tree_sha": "5555555555555555555555555555555555555552",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [
+    {
+      "artifact_type": "GoLiveEvidenceBundle",
+      "artifact_id": "GLE-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "770ccada6b35cd712fb512ce36044dc715fbc4df846ff3f24bbed409366cc365",
+      "chain_sha256": "2f90ee09a74905ba3011fbc59b8b657caae1c117ad87ee62cd5e267802f0ebbf",
+      "relationship": "DERIVED_FROM",
+      "status": "VALIDATED",
+      "produced_at": "2026-08-08T16:00:00Z"
+    }
+  ],
+  "authority": {
+    "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+    "actor_id": "ATLASBRIDGE-RELEASE-CHAIR",
+    "role": "RELEASE_DECISION_OWNER",
+    "authority_scope": "GO_LIVE_READINESS_ADJUDICATION",
+    "action": "ADJUDICATE",
+    "outcome": "CONDITIONAL",
+    "rationale": "The governed readiness result is BLOCKED.",
+    "conditions": [
+      "Complete support training and rebuild the evidence bundle."
+    ],
+    "artifact_digest": "2f6b354c48639f73d7e15d820ef11f312d3f74f4c0cbada34e8f1563a374588c",
+    "recorded_at": "2026-08-08T16:55:00Z",
+    "review_round": 1
+  },
+  "payload_sha256": "be79d92d2613973631aeda06fda1be914f02b8cb8449db151a5c2b3483c240fe",
+  "artifact_sha256": "97bbcb77bdb69c8127fb86ad6b6f0ab7c272b255cabe9bd4ba7c99076b8891b2",
+  "chain_sha256": "e055ba82f1a733715e64241da9ab7d1b08034224b7564333d6079b1b66deb2b3",
+  "payload": {
+    "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+    "release_candidate": {
+      "release_candidate_id": "ATLASBRIDGE-ONBOARDING-2",
+      "version": "2.0.0",
+      "scope_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+    },
+    "policy": {
+      "policy_id": "ATLASBRIDGE-GO-LIVE-POLICY",
+      "version": "1.0.0",
+      "sha256": "049ec55414568fd88614e33569a79a668b03f55a68d01f252e16bc092916fd45"
+    },
+    "evidence_bundle_sha256": "770ccada6b35cd712fb512ce36044dc715fbc4df846ff3f24bbed409366cc365",
+    "portfolio_chain_sha256": "2f90ee09a74905ba3011fbc59b8b657caae1c117ad87ee62cd5e267802f0ebbf",
+    "gate_results": [
+      {
+        "gate_id": "G-01",
+        "gate_name": "RELEASE_IDENTITY_AND_SCOPE",
+        "outcome": "PASS",
+        "rationale": "G-01 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "PRD-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-02",
+        "gate_name": "BUSINESS_ACCEPTANCE",
+        "outcome": "PASS",
+        "rationale": "G-02 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "SAA-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-03",
+        "gate_name": "FUNCTIONAL_ACCEPTANCE",
+        "outcome": "PASS",
+        "rationale": "G-03 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "RQA-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-04",
+        "gate_name": "SECURITY_VERIFICATION",
+        "outcome": "PASS",
+        "rationale": "G-04 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-05",
+        "gate_name": "PRIVACY_AND_DATA_PROTECTION",
+        "outcome": "PASS",
+        "rationale": "G-05 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "SAA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-06",
+        "gate_name": "DATA_MIGRATION",
+        "outcome": "PASS",
+        "rationale": "G-06 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "PRD-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-07",
+        "gate_name": "PERFORMANCE_AND_CAPACITY",
+        "outcome": "PASS",
+        "rationale": "G-07 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-08",
+        "gate_name": "RELIABILITY_AND_RECOVERY",
+        "outcome": "PASS",
+        "rationale": "G-08 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-09",
+        "gate_name": "OBSERVABILITY_AND_INCIDENT_RESPONSE",
+        "outcome": "PASS",
+        "rationale": "G-09 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-10",
+        "gate_name": "SUPPORT_READINESS",
+        "outcome": "PASS",
+        "rationale": "G-10 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-11",
+        "gate_name": "TRAINING_AND_COMMUNICATIONS",
+        "outcome": "BLOCKED",
+        "rationale": "G-11 produced governed outcome BLOCKED.",
+        "evidence_refs": [],
+        "upstream_artifact_ids": [
+          "SAA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": [
+          {
+            "action_id": "ACTION-COMPLETE-SUPPORT-TRAINING",
+            "description": "Complete training, capture immutable evidence and rebuild the bundle.",
+            "owner": "SUPPORT-LEAD",
+            "status": "OPEN",
+            "due_at": "2026-08-15T17:00:00Z"
+          }
+        ]
+      },
+      {
+        "gate_id": "G-12",
+        "gate_name": "ROLLBACK_AND_ROLLFORWARD",
+        "outcome": "PASS",
+        "rationale": "G-12 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/rollback.md",
+            "source_path": "operational/rollback.md",
+            "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "exact_quote": "Production-like rollback rehearsal completed successfully.",
+            "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-13",
+        "gate_name": "EXTERNAL_DEPENDENCIES",
+        "outcome": "PASS",
+        "rationale": "G-13 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      },
+      {
+        "gate_id": "G-14",
+        "gate_name": "RELEASE_AUTHORITY_AND_WINDOW",
+        "outcome": "PASS",
+        "rationale": "G-14 produced governed outcome PASS.",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "upstream_artifact_ids": [
+          "SAA-ATLASBRIDGE-001"
+        ],
+        "required_actions": []
+      }
+    ],
+    "failed_gates": [],
+    "blocked_gates": [
+      "G-11"
+    ],
+    "passed_gates": [
+      "G-01",
+      "G-02",
+      "G-03",
+      "G-04",
+      "G-05",
+      "G-06",
+      "G-07",
+      "G-08",
+      "G-09",
+      "G-10",
+      "G-12",
+      "G-13",
+      "G-14"
+    ],
+    "required_actions": [
+      {
+        "action_id": "ACTION-COMPLETE-SUPPORT-TRAINING",
+        "description": "Complete training, capture immutable evidence and rebuild the bundle.",
+        "owner": "SUPPORT-LEAD",
+        "status": "OPEN",
+        "due_at": "2026-08-15T17:00:00Z"
+      }
+    ],
+    "residual_risks": [],
+    "final_decision": "BLOCKED",
+    "upstream_conditions": [
+      {
+        "source_artifact_id": "SAA-ATLASBRIDGE-001",
+        "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+        "description": "Complete and evidence support training before go-live.",
+        "status": "OPEN",
+        "evidence_refs": []
+      }
+    ],
+    "upstream_obligations": [
+      {
+        "source_artifact_id": "BCI-ATLASBRIDGE-001",
+        "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+        "description": "Complete and evidence support training before release.",
+        "status": "OPEN",
+        "evidence_refs": []
+      }
+    ],
+    "superseded_artifacts": [],
+    "decision": {
+      "decision_id": "ATLASBRIDGE-GO-LIVE-DECISION-001",
+      "actor_id": "ATLASBRIDGE-RELEASE-CHAIR",
+      "role": "RELEASE_DECISION_OWNER",
+      "authority_scope": "GO_LIVE_READINESS_ADJUDICATION",
+      "action": "ADJUDICATE",
+      "outcome": "CONDITIONAL",
+      "rationale": "The governed readiness result is BLOCKED.",
+      "conditions": [
+        "Complete support training and rebuild the evidence bundle."
+      ],
+      "artifact_digest": "2f6b354c48639f73d7e15d820ef11f312d3f74f4c0cbada34e8f1563a374588c",
+      "recorded_at": "2026-08-08T16:55:00Z",
+      "review_round": 1
+    },
+    "execution_authorized": false,
+    "execution_authority": null
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "BLOCKED is a readiness outcome and no production execution is authorized."
+  ]
+}

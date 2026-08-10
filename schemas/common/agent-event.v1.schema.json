@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/common/agent-event.v1.schema.json",
+  "title": "AgentEvent.v1",
+  "description": "One link in the tamper-evident portfolio audit event chain.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "transformation_id",
+    "correlation_id",
+    "causation_id",
+    "stage",
+    "event_type",
+    "actor_type",
+    "actor_id",
+    "artifact_ref",
+    "occurred_at",
+    "previous_event_digest",
+    "event_digest"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "transformation_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "correlation_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "causation_id": {
+      "oneOf": [
+        {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+        {"type": "null"}
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["PORTFOLIO", "REQUIREMENTS_QUALITY", "STAKEHOLDER_ALIGNMENT", "PROCESS_REDESIGN", "CHANGE_IMPACT", "GO_LIVE_EVIDENCE", "GO_LIVE_DECISION"]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": ["TRANSFORMATION_STARTED", "ARTIFACT_PRODUCED", "ARTIFACT_VALIDATED", "HUMAN_DECISION_RECORDED", "ARTIFACT_SUPERSEDED", "TRANSFORMATION_COMPLETED"]
+    },
+    "actor_type": {"type": "string", "enum": ["HUMAN", "AGENT", "SYSTEM"]},
+    "actor_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "artifact_ref": {
+      "oneOf": [
+        {"$ref": "artifact-envelope.v1.schema.json#/$defs/artifactReference"},
+        {"type": "null"}
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,9})?Z$"
+    },
+    "previous_event_digest": {
+      "oneOf": [
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        {"type": "null"}
+      ]
+    },
+    "event_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"event_type": {"const": "TRANSFORMATION_STARTED"}},
+        "required": ["event_type"]
+      },
+      "then": {
+        "properties": {
+          "stage": {"const": "PORTFOLIO"},
+          "causation_id": {"type": "null"},
+          "artifact_ref": {"type": "null"},
+          "previous_event_digest": {"type": "null"}
+        }
+      },
+      "else": {
+        "properties": {
+          "causation_id": {"type": "string"},
+          "previous_event_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"event_type": {"enum": ["ARTIFACT_PRODUCED", "ARTIFACT_VALIDATED", "HUMAN_DECISION_RECORDED", "ARTIFACT_SUPERSEDED"]}},
+        "required": ["event_type"]
+      },
+      "then": {"properties": {"artifact_ref": {"$ref": "artifact-envelope.v1.schema.json#/$defs/artifactReference"}}}
+    }
+  ]
+}

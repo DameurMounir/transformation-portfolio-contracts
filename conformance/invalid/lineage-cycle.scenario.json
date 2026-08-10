@@ -1,0 +1,450 @@
+{
+  "case_id": "LINEAGE-CYCLE",
+  "description": "Typed process uses a self-reference in its required requirements slot.",
+  "artifacts": [
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/requirements-assessment.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "RequirementsAssessment",
+      "artifact_id": "PASS-RQA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "REQUIREMENTS_QUALITY",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T12:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/requirements-quality-agent",
+        "source_uri": "https://github.com/DameurMounir/requirements-quality-agent",
+        "release": "v0.2.0",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "tree_sha": "1111111111111111111111111111111111111112",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [],
+      "authority": {
+        "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+        "actor_id": "MOUNIR",
+        "role": "REQUIREMENTS_REVIEWER",
+        "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+        "action": "CONFIRM",
+        "outcome": "APPROVED",
+        "rationale": "The two requirements are evidence-backed and buildable.",
+        "conditions": [],
+        "artifact_digest": "7dbe6d625721f3905ed7c1b1c02f0ba55ba560910fe4b2adfccfaebda60e408e",
+        "recorded_at": "2026-08-08T11:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "e0a4fd8c58b83f4dc07de01105afe2b151cb7930fa275139f5c5a931233cf858",
+      "artifact_sha256": "6faa1e82f70cb004af2a01bd7ffd151436e2069e316f74a28ce039f79b018375",
+      "chain_sha256": "44dc2d0b53f77279300b3e6f0927feabbd4885271967562908b7f6d037978c57",
+      "payload": {
+        "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+        "source_pack_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+        "requirements": [
+          {
+            "requirement_id": "ATLASBRIDGE-REQ-IDENTITY-001",
+            "statement": "Identity evidence must be verified before an onboarding case can be approved.",
+            "status": "CONFIRMED",
+            "priority": "MUST",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-REQ-IDENTITY-001",
+                "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-001",
+                "source_id": "requirements/atlasbridge.md",
+                "source_path": "requirements/atlasbridge.md",
+                "source_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+                "exact_quote": "Identity evidence must be verified before an onboarding case can be approved.",
+                "quote_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          },
+          {
+            "requirement_id": "ATLASBRIDGE-REQ-TRAINING-001",
+            "statement": "Support training is mandatory before the new onboarding process enters production.",
+            "status": "CONFIRMED",
+            "priority": "MUST",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-REQ-TRAINING-001",
+                "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-002",
+                "source_id": "requirements/training.md",
+                "source_path": "requirements/training.md",
+                "source_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+                "exact_quote": "Support training is mandatory before the new onboarding process enters production.",
+                "quote_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "findings": [],
+        "open_clarification_questions": [],
+        "approved_revisions": [],
+        "critical_unresolved_count": 0,
+        "scorecard": {
+          "total_requirements": 2,
+          "confirmed": 2,
+          "unresolved": 0,
+          "rejected": 0,
+          "quality_score_basis_points": 10000
+        },
+        "analysis_provenance": {
+          "analysis_method": "requirements-quality-agent deterministic ruleset",
+          "rulebook_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+          "analysis_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+        },
+        "human_review": {
+          "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+          "actor_id": "MOUNIR",
+          "role": "REQUIREMENTS_REVIEWER",
+          "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+          "action": "CONFIRM",
+          "outcome": "APPROVED",
+          "rationale": "The two requirements are evidence-backed and buildable.",
+          "conditions": [],
+          "artifact_digest": "7dbe6d625721f3905ed7c1b1c02f0ba55ba560910fe4b2adfccfaebda60e408e",
+          "recorded_at": "2026-08-08T11:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "This assessment does not authorize implementation or release."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/stakeholder-alignment-packet.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "StakeholderAlignmentPacket",
+      "artifact_id": "PASS-SAA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "STAKEHOLDER_ALIGNMENT",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T13:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/stakeholder-alignment-agent",
+        "source_uri": "https://github.com/DameurMounir/stakeholder-alignment-agent",
+        "release": "v0.2.0",
+        "commit_sha": "2222222222222222222222222222222222222221",
+        "tree_sha": "2222222222222222222222222222222222222222",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "RequirementsAssessment",
+          "artifact_id": "PASS-RQA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "6faa1e82f70cb004af2a01bd7ffd151436e2069e316f74a28ce039f79b018375",
+          "chain_sha256": "44dc2d0b53f77279300b3e6f0927feabbd4885271967562908b7f6d037978c57",
+          "relationship": "DERIVED_FROM",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T12:00:00Z"
+        }
+      ],
+      "authority": {
+        "decision_id": "ATLASBRIDGE-ALIGN-001",
+        "actor_id": "ATLASBRIDGE-SPONSOR",
+        "role": "BUSINESS_SPONSOR",
+        "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+        "action": "APPROVE",
+        "outcome": "APPROVED",
+        "rationale": "Option B is acceptable only after support training evidence is complete.",
+        "conditions": [],
+        "artifact_digest": "df6107b96d854fa6c7d9043ccc7f5fd0682a8fda9371b781ffff12bb0efa2482",
+        "recorded_at": "2026-08-08T12:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "fcf40a2b12f3e28b6f76934c15a2c222d7f530f891ea97848ab223f8e3a424e3",
+      "artifact_sha256": "39819d17762e5f8e47684ecf3ab2916e389f8b4518f88eedaa09448f3d6a9dfa",
+      "chain_sha256": "ea07e2614b874fd3f74194f8ddf75ba65d8615eb0287b0b454e27e1341078f80",
+      "payload": {
+        "alignment_decision_id": "ATLASBRIDGE-ALIGN-001",
+        "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+        "agreed_requirement_ids": [
+          "ATLASBRIDGE-REQ-IDENTITY-001",
+          "ATLASBRIDGE-REQ-TRAINING-001"
+        ],
+        "disputed_requirement_ids": [],
+        "undecided_requirement_ids": [],
+        "alignment_issues": [
+          {
+            "issue_id": "ATLASBRIDGE-ALIGN-ISSUE-001",
+            "requirement_ids": [
+              "ATLASBRIDGE-REQ-TRAINING-001"
+            ],
+            "status": "AGREED",
+            "summary": "Training is mandatory and remains an open pre-release condition.",
+            "option_ids": [
+              "OPT-B"
+            ],
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-ALIGN-DECISION-001",
+                "source_artifact_id": "ATLASBRIDGE-ALIGN-SOURCE-001",
+                "source_id": "decisions/alignment.md",
+                "source_path": "decisions/alignment.md",
+                "source_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+                "exact_quote": "Option B is selected subject to completion of support training.",
+                "quote_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "options": [
+          {
+            "option_id": "OPT-A",
+            "title": "Manual verification",
+            "description": "Retain the manual onboarding review.",
+            "conditions": []
+          },
+          {
+            "option_id": "OPT-B",
+            "title": "Controlled automation",
+            "description": "Automate risk scoring while preserving identity and approval controls.",
+            "conditions": [
+              "ATLASBRIDGE-COND-TRAINING-001"
+            ]
+          }
+        ],
+        "selected_option_id": "OPT-B",
+        "scoped_approvals": [
+          {
+            "decision_id": "ATLASBRIDGE-ALIGN-001",
+            "actor_id": "ATLASBRIDGE-SPONSOR",
+            "role": "BUSINESS_SPONSOR",
+            "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+            "action": "SELECT",
+            "outcome": "CONDITIONAL",
+            "rationale": "Option B is acceptable only after support training evidence is complete.",
+            "conditions": [
+              "Complete and evidence support training before go-live."
+            ],
+            "artifact_digest": "df6107b96d854fa6c7d9043ccc7f5fd0682a8fda9371b781ffff12bb0efa2482",
+            "recorded_at": "2026-08-08T12:55:00Z",
+            "review_round": 1
+          }
+        ],
+        "open_conditions": [
+          {
+            "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+            "description": "Complete and evidence support training before go-live.",
+            "owner": "SUPPORT-LEAD",
+            "due_at": "2026-08-15T17:00:00Z",
+            "status": "SATISFIED",
+            "evidence_refs": [
+              {
+                "evidence_id": "EVID-TRAINING-COMPLETE-001",
+                "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+                "source_id": "operational/training-complete.md",
+                "source_path": "operational/training-complete.md",
+                "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "exact_quote": "All support analysts completed the approved training and assessment.",
+                "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+                "location": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "evidence_verdict": "SUPPORTS"
+              }
+            ]
+          }
+        ],
+        "sponsor_outcome": "GO",
+        "decision_digest": "1f68d6d71768425a1929989b190144ca8bca0c0ade5b8e3e3945affa2b3533dc",
+        "decision": {
+          "decision_id": "ATLASBRIDGE-ALIGN-001",
+          "actor_id": "ATLASBRIDGE-SPONSOR",
+          "role": "BUSINESS_SPONSOR",
+          "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+          "action": "APPROVE",
+          "outcome": "APPROVED",
+          "rationale": "Option B is acceptable only after support training evidence is complete.",
+          "conditions": [],
+          "artifact_digest": "df6107b96d854fa6c7d9043ccc7f5fd0682a8fda9371b781ffff12bb0efa2482",
+          "recorded_at": "2026-08-08T12:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "Conditional approval is not release authorization."
+      ]
+    },
+    {
+      "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/process-redesign-decision.v1.schema.json",
+      "spec_version": "1.0.0",
+      "digest_profile": "TPC-JCS-SHA256-v1",
+      "artifact_type": "ProcessRedesignDecision",
+      "artifact_id": "PASS-PRD-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "case_id": "ATLASBRIDGE-ONBOARDING-001",
+      "stage": "PROCESS_REDESIGN",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T14:00:00Z",
+      "producer": {
+        "repository": "DameurMounir/process-redesign-agent",
+        "source_uri": "https://github.com/DameurMounir/process-redesign-agent",
+        "release": "v0.2.0",
+        "commit_sha": "3333333333333333333333333333333333333331",
+        "tree_sha": "3333333333333333333333333333333333333332",
+        "tool_version": "0.2.0"
+      },
+      "inputs": [
+        {
+          "artifact_type": "RequirementsAssessment",
+          "artifact_id": "PASS-PRD-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "chain_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "relationship": "DERIVED_FROM",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T14:00:00Z"
+        },
+        {
+          "artifact_type": "StakeholderAlignmentPacket",
+          "artifact_id": "PASS-SAA-ATLASBRIDGE-001",
+          "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+          "schema_version": "1.0.0",
+          "sha256": "39819d17762e5f8e47684ecf3ab2916e389f8b4518f88eedaa09448f3d6a9dfa",
+          "chain_sha256": "ea07e2614b874fd3f74194f8ddf75ba65d8615eb0287b0b454e27e1341078f80",
+          "relationship": "CONSTRAINED_BY",
+          "status": "HUMAN_CONFIRMED",
+          "produced_at": "2026-08-08T13:00:00Z"
+        }
+      ],
+      "authority": {
+        "decision_id": "ATLASBRIDGE-PROCESS-001",
+        "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+        "role": "PROCESS_DECISION_OWNER",
+        "authority_scope": "PROCESS_OPTION_SELECTION",
+        "action": "SELECT",
+        "outcome": "APPROVED",
+        "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+        "conditions": [],
+        "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+        "recorded_at": "2026-08-08T13:55:00Z",
+        "review_round": 1
+      },
+      "payload_sha256": "4b76237a6337b929c22a45b621379b35ef32028d135dfe8432e654b6db08be91",
+      "artifact_sha256": "fe30c02acf89bf7e4a3e4b46c02f89d9a0a43a35669dcba6f03824c8597ce0d9",
+      "chain_sha256": "5f35bdc39d1365ee6fa42fb0e59490aa3d0dabe0ce22183c953133763b4a5721",
+      "payload": {
+        "process_decision_id": "ATLASBRIDGE-PROCESS-001",
+        "selected_option_id": "OPT-B",
+        "constraining_condition_ids": [
+          "ATLASBRIDGE-COND-TRAINING-001"
+        ],
+        "comparison_digest": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+        "options_assessed": [
+          {
+            "option_id": "OPT-A",
+            "title": "Manual verification",
+            "control_ids": [
+              "CTRL-IDENTITY",
+              "CTRL-HUMAN-APPROVAL"
+            ],
+            "effort_person_days": 30,
+            "cost_minor_units": 2500000,
+            "currency": "MAD",
+            "duration_days": 20,
+            "change_risk": "LOW"
+          },
+          {
+            "option_id": "OPT-B",
+            "title": "Controlled automation",
+            "control_ids": [
+              "CTRL-IDENTITY",
+              "CTRL-HUMAN-APPROVAL",
+              "CTRL-AUDIT-LOG"
+            ],
+            "effort_person_days": 45,
+            "cost_minor_units": 4000000,
+            "currency": "MAD",
+            "duration_days": 30,
+            "change_risk": "MEDIUM"
+          }
+        ],
+        "to_be_process": {
+          "process_id": "ATLASBRIDGE-TO-BE-001",
+          "version": "1.0.0",
+          "steps": [
+            {
+              "step_id": "STEP-IDENTITY-VERIFY",
+              "name": "Verify identity evidence",
+              "owner_role": "ONBOARDING_ANALYST",
+              "predecessor_step_ids": [],
+              "controls": [
+                "CTRL-IDENTITY"
+              ]
+            },
+            {
+              "step_id": "STEP-RISK-SCORE",
+              "name": "Calculate automated risk score and route exceptions",
+              "owner_role": "ONBOARDING_SYSTEM",
+              "predecessor_step_ids": [
+                "STEP-IDENTITY-VERIFY"
+              ],
+              "controls": [
+                "CTRL-HUMAN-APPROVAL",
+                "CTRL-AUDIT-LOG"
+              ]
+            }
+          ]
+        },
+        "controls_preserved": [
+          "CTRL-IDENTITY",
+          "CTRL-HUMAN-APPROVAL",
+          "CTRL-AUDIT-LOG"
+        ],
+        "assumptions": [
+          "The existing identity provider remains available during migration."
+        ],
+        "target_metrics": [
+          {
+            "metric_id": "METRIC-CYCLE-TIME",
+            "name": "Median onboarding cycle time",
+            "unit": "minutes",
+            "target_value": "30",
+            "measurement_window_days": 30
+          }
+        ],
+        "selection": {
+          "decision_id": "ATLASBRIDGE-PROCESS-001",
+          "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+          "role": "PROCESS_DECISION_OWNER",
+          "authority_scope": "PROCESS_OPTION_SELECTION",
+          "action": "SELECT",
+          "outcome": "APPROVED",
+          "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+          "conditions": [],
+          "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+          "recorded_at": "2026-08-08T13:55:00Z",
+          "review_round": 1
+        }
+      },
+      "limitations": [
+        "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+        "The selection does not authorize production implementation."
+      ]
+    }
+  ]
+}

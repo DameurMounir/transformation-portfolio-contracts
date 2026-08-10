@@ -1,0 +1,142 @@
+{
+  "suite_version": "1.0.0",
+  "valid_fixtures": [
+    {
+      "fixture": "agent-event-root-to-terminal.scenario.json",
+      "expected": "VALID"
+    },
+    {
+      "fixture": "blocked-open-condition.scenario.json",
+      "expected": "VALID"
+    },
+    {
+      "fixture": "explicit-security-fail.scenario.json",
+      "expected": "VALID"
+    },
+    {
+      "fixture": "happy-pass.scenario.json",
+      "expected": "VALID"
+    },
+    {
+      "fixture": "supersession-replacement-pass.scenario.json",
+      "expected": "VALID"
+    }
+  ],
+  "cases": [
+    {
+      "fixture": "agent-event-stale-chain.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "STALE_PREVIOUS_EVENT_DIGEST"
+    },
+    {
+      "fixture": "agent-event-tampered.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "EVENT_DIGEST_MISMATCH"
+    },
+    {
+      "fixture": "alignment-decision-digest-mismatch.json",
+      "expected": "INVALID",
+      "expected_error": "ALIGNMENT_DECISION_DIGEST_MISMATCH"
+    },
+    {
+      "fixture": "artifact-id-content-collision.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "ARTIFACT_ID_CONTENT_COLLISION"
+    },
+    {
+      "fixture": "authority-decision-subject-digest-mismatch.json",
+      "expected": "INVALID",
+      "expected_error": "DECISION_SUBJECT_DIGEST_MISMATCH"
+    },
+    {
+      "fixture": "invented-gate-evidence.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "UNREGISTERED_GATE_EVIDENCE"
+    },
+    {
+      "fixture": "lineage-cycle.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "LINEAGE_CYCLE"
+    },
+    {
+      "fixture": "missing-impact-obligation.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "BUNDLE_UPSTREAM_PROJECTION_MISMATCH"
+    },
+    {
+      "fixture": "pass-with-missing-evidence.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "GATE_EVIDENCE_UNAVAILABLE_FOR_PASS"
+    },
+    {
+      "fixture": "pass-with-open-condition.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "PASS_WITH_OPEN_UPSTREAM_CONDITION"
+    },
+    {
+      "fixture": "rejected-upstream-process.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "INELIGIBLE_UPSTREAM_STATUS"
+    },
+    {
+      "fixture": "stage-schema-mismatch.json",
+      "expected": "INVALID",
+      "expected_error": "ARTIFACT_SCHEMA_MISMATCH"
+    },
+    {
+      "fixture": "stale-bundle-chain.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "STALE_CHAIN_DIGEST"
+    },
+    {
+      "fixture": "superseded-upstream-process.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "SUPERSEDED_UPSTREAM_ARTIFACT"
+    },
+    {
+      "fixture": "tampered-payload.json",
+      "expected": "INVALID",
+      "expected_error": "PAYLOAD_DIGEST_MISMATCH"
+    },
+    {
+      "fixture": "unregistered-authority-scope.json",
+      "expected": "INVALID",
+      "expected_error": "UNREGISTERED_AUTHORITY_SCOPE"
+    },
+    {
+      "fixture": "unregistered-producer-release.json",
+      "expected": "INVALID",
+      "expected_error": "UNREGISTERED_PRODUCER_RELEASE"
+    },
+    {
+      "fixture": "unregistered-producer.json",
+      "expected": "INVALID",
+      "expected_error": "UNREGISTERED_PRODUCER"
+    },
+    {
+      "fixture": "unsupported-contract-major.json",
+      "expected": "INVALID",
+      "expected_error": "UNSUPPORTED_CONTRACT_MAJOR"
+    },
+    {
+      "fixture": "wrong-case-id.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "CASE_ID_MISMATCH"
+    },
+    {
+      "fixture": "wrong-gate-source.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "GATE_SOURCE_SET_MISMATCH"
+    },
+    {
+      "fixture": "wrong-release-candidate.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "RELEASE_CANDIDATE_MISMATCH"
+    },
+    {
+      "fixture": "wrong-transformation-id.scenario.json",
+      "expected": "INVALID",
+      "expected_error": "TRANSFORMATION_MISMATCH"
+    }
+  ]
+}

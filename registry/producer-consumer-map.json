@@ -1,0 +1,40 @@
+{
+  "registry_version": "1.0.0",
+  "generated_at": "2026-08-10T00:00:00Z",
+  "transformation_id_example": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "stages": [
+    {"order": 1, "stage": "REQUIREMENTS_QUALITY", "repository": "DameurMounir/requirements-quality-agent", "release": "v0.2.0", "authority_scope": "REQUIREMENTS_BASELINE_REVIEW", "execution_authority_scope": null, "consumes": [], "produces": "RequirementsAssessment.v1"},
+    {"order": 2, "stage": "STAKEHOLDER_ALIGNMENT", "repository": "DameurMounir/stakeholder-alignment-agent", "release": "v0.2.0", "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME", "execution_authority_scope": null, "consumes": ["RequirementsAssessment.v1"], "produces": "StakeholderAlignmentPacket.v1"},
+    {"order": 3, "stage": "PROCESS_REDESIGN", "repository": "DameurMounir/process-redesign-agent", "release": "v0.2.0", "authority_scope": "PROCESS_OPTION_SELECTION", "execution_authority_scope": null, "consumes": ["RequirementsAssessment.v1", "StakeholderAlignmentPacket.v1"], "produces": "ProcessRedesignDecision.v1"},
+    {"order": 4, "stage": "CHANGE_IMPACT", "repository": "DameurMounir/business-change-impact-agent", "release": "v0.2.0", "authority_scope": null, "execution_authority_scope": null, "consumes": ["ProcessRedesignDecision.v1"], "produces": "ChangeImpactPacket.v1"},
+    {"order": 5, "stage": "GO_LIVE_EVIDENCE", "repository": "DameurMounir/go-live-decision-agent", "release": "v0.2.0", "authority_scope": null, "execution_authority_scope": null, "consumes": ["RequirementsAssessment.v1", "StakeholderAlignmentPacket.v1", "ProcessRedesignDecision.v1", "ChangeImpactPacket.v1"], "produces": "GoLiveEvidenceBundle.v1"},
+    {"order": 6, "stage": "GO_LIVE_DECISION", "repository": "DameurMounir/go-live-decision-agent", "release": "v0.2.0", "authority_scope": "GO_LIVE_READINESS_ADJUDICATION", "execution_authority_scope": "GO_LIVE_EXECUTION_AUTHORIZATION", "consumes": ["GoLiveEvidenceBundle.v1"], "produces": "GoLiveDecisionPacket.v1"}
+  ],
+  "gate_source_policy": {
+    "G-01": ["RequirementsAssessment.v1", "ProcessRedesignDecision.v1", "ChangeImpactPacket.v1"],
+    "G-02": ["StakeholderAlignmentPacket.v1"],
+    "G-03": ["RequirementsAssessment.v1"],
+    "G-04": ["RequirementsAssessment.v1", "ChangeImpactPacket.v1"],
+    "G-05": ["RequirementsAssessment.v1", "StakeholderAlignmentPacket.v1", "ChangeImpactPacket.v1"],
+    "G-06": ["ProcessRedesignDecision.v1", "ChangeImpactPacket.v1"],
+    "G-07": ["ProcessRedesignDecision.v1"],
+    "G-08": ["ProcessRedesignDecision.v1"],
+    "G-09": ["ChangeImpactPacket.v1"],
+    "G-10": ["ChangeImpactPacket.v1"],
+    "G-11": ["StakeholderAlignmentPacket.v1", "ChangeImpactPacket.v1"],
+    "G-12": ["ProcessRedesignDecision.v1"],
+    "G-13": ["ChangeImpactPacket.v1"],
+    "G-14": ["StakeholderAlignmentPacket.v1"]
+  },
+  "edges": [
+    {"from": "RequirementsAssessment.v1", "to": "StakeholderAlignmentPacket.v1", "relationship": "DERIVED_FROM", "required": true},
+    {"from": "RequirementsAssessment.v1", "to": "ProcessRedesignDecision.v1", "relationship": "DERIVED_FROM", "required": true},
+    {"from": "StakeholderAlignmentPacket.v1", "to": "ProcessRedesignDecision.v1", "relationship": "CONSTRAINED_BY", "required": true},
+    {"from": "ProcessRedesignDecision.v1", "to": "ChangeImpactPacket.v1", "relationship": "DERIVED_FROM", "required": true},
+    {"from": "RequirementsAssessment.v1", "to": "GoLiveEvidenceBundle.v1", "relationship": "ASSEMBLES", "required": true},
+    {"from": "StakeholderAlignmentPacket.v1", "to": "GoLiveEvidenceBundle.v1", "relationship": "ASSEMBLES", "required": true},
+    {"from": "ProcessRedesignDecision.v1", "to": "GoLiveEvidenceBundle.v1", "relationship": "ASSEMBLES", "required": true},
+    {"from": "ChangeImpactPacket.v1", "to": "GoLiveEvidenceBundle.v1", "relationship": "ASSEMBLES", "required": true},
+    {"from": "GoLiveEvidenceBundle.v1", "to": "GoLiveDecisionPacket.v1", "relationship": "DERIVED_FROM", "required": true}
+  ]
+}

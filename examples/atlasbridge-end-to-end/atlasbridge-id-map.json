@@ -1,0 +1,23 @@
+{
+  "map_version": "1.0.0",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "canonical_ids": {
+    "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+    "alignment_decision_id": "ATLASBRIDGE-ALIGN-001",
+    "process_decision_id": "ATLASBRIDGE-PROCESS-001",
+    "change_package_id": "ATLASBRIDGE-CHANGE-001",
+    "release_candidate_id": "ATLASBRIDGE-ONBOARDING-2"
+  },
+  "portable_artifacts": [
+    {"artifact_type": "RequirementsAssessment", "artifact_id": "RQA-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-REQ-001"},
+    {"artifact_type": "StakeholderAlignmentPacket", "artifact_id": "SAA-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-ALIGN-001"},
+    {"artifact_type": "ProcessRedesignDecision", "artifact_id": "PRD-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-PROCESS-001"},
+    {"artifact_type": "ChangeImpactPacket", "artifact_id": "BCI-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-CHANGE-001"},
+    {"artifact_type": "GoLiveEvidenceBundle", "artifact_id": "GLE-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-GO-LIVE-BUNDLE-001"},
+    {"artifact_type": "GoLiveDecisionPacket", "artifact_id": "GLD-ATLASBRIDGE-001", "canonical_business_id": "ATLASBRIDGE-GO-LIVE-DECISION-001"}
+  ],
+  "legacy_mappings": [
+    {"repository": "DameurMounir/business-change-impact-agent", "local_id": "ATLASBRIDGE-ONBOARDING-IMPACT-001", "canonical_id": "ATLASBRIDGE-CHANGE-001", "relationship": "SAME_SYNTHETIC_TRANSFORMATION"}
+  ]
+}

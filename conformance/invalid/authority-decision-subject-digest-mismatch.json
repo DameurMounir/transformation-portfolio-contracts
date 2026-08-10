@@ -1,0 +1,120 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/requirements-assessment.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "RequirementsAssessment",
+  "artifact_id": "PASS-RQA-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "REQUIREMENTS_QUALITY",
+  "status": "HUMAN_CONFIRMED",
+  "produced_at": "2026-08-08T12:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/requirements-quality-agent",
+    "source_uri": "https://github.com/DameurMounir/requirements-quality-agent",
+    "release": "v0.2.0",
+    "commit_sha": "1111111111111111111111111111111111111111",
+    "tree_sha": "1111111111111111111111111111111111111112",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [],
+  "authority": {
+    "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+    "actor_id": "MOUNIR",
+    "role": "REQUIREMENTS_REVIEWER",
+    "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+    "action": "CONFIRM",
+    "outcome": "APPROVED",
+    "rationale": "The two requirements are evidence-backed and buildable.",
+    "conditions": [],
+    "artifact_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "recorded_at": "2026-08-08T11:55:00Z",
+    "review_round": 1
+  },
+  "payload_sha256": "bc2195aa9eb096d2997eec5a3d8f17f3f9cc3321374e93396794705e838aa7eb",
+  "artifact_sha256": "1034b06a1b51953945bb6a151f247b08f2de6d1840953ca85782ef96e60e1098",
+  "chain_sha256": "b2cb29c0de12a559f698119df65eccb4fd89fd4c2e6b0417b58276133c685081",
+  "payload": {
+    "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+    "source_pack_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+    "requirements": [
+      {
+        "requirement_id": "ATLASBRIDGE-REQ-IDENTITY-001",
+        "statement": "Identity evidence must be verified before an onboarding case can be approved.",
+        "status": "CONFIRMED",
+        "priority": "MUST",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-REQ-IDENTITY-001",
+            "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-001",
+            "source_id": "requirements/atlasbridge.md",
+            "source_path": "requirements/atlasbridge.md",
+            "source_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+            "exact_quote": "Identity evidence must be verified before an onboarding case can be approved.",
+            "quote_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "requirement_id": "ATLASBRIDGE-REQ-TRAINING-001",
+        "statement": "Support training is mandatory before the new onboarding process enters production.",
+        "status": "CONFIRMED",
+        "priority": "MUST",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-REQ-TRAINING-001",
+            "source_artifact_id": "ATLASBRIDGE-REQ-SOURCE-002",
+            "source_id": "requirements/training.md",
+            "source_path": "requirements/training.md",
+            "source_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+            "exact_quote": "Support training is mandatory before the new onboarding process enters production.",
+            "quote_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ]
+      }
+    ],
+    "findings": [],
+    "open_clarification_questions": [],
+    "approved_revisions": [],
+    "critical_unresolved_count": 0,
+    "scorecard": {
+      "total_requirements": 2,
+      "confirmed": 2,
+      "unresolved": 0,
+      "rejected": 0,
+      "quality_score_basis_points": 10000
+    },
+    "analysis_provenance": {
+      "analysis_method": "requirements-quality-agent deterministic ruleset",
+      "rulebook_sha256": "ca596a328e01160144472f38317f64b46787478412e59dd7484198b100713a12",
+      "analysis_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+    },
+    "human_review": {
+      "decision_id": "RQA-REVIEW-ATLASBRIDGE-001",
+      "actor_id": "MOUNIR",
+      "role": "REQUIREMENTS_REVIEWER",
+      "authority_scope": "REQUIREMENTS_BASELINE_REVIEW",
+      "action": "CONFIRM",
+      "outcome": "APPROVED",
+      "rationale": "The two requirements are evidence-backed and buildable.",
+      "conditions": [],
+      "artifact_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "recorded_at": "2026-08-08T11:55:00Z",
+      "review_round": 1
+    }
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "This assessment does not authorize implementation or release."
+  ]
+}

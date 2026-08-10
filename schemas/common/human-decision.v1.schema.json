@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/common/human-decision.v1.schema.json",
+  "title": "HumanDecision.v1",
+  "description": "A digest-bound record of a human exercising a precisely scoped authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_id",
+    "actor_id",
+    "role",
+    "authority_scope",
+    "action",
+    "outcome",
+    "rationale",
+    "conditions",
+    "artifact_digest",
+    "recorded_at",
+    "review_round"
+  ],
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "actor_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "role": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,63}$"},
+    "authority_scope": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,127}$"},
+    "action": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,63}$"},
+    "outcome": {
+      "type": "string",
+      "enum": ["APPROVED", "CONDITIONAL", "REJECTED", "ACKNOWLEDGED", "SUPERSEDED"]
+    },
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "conditions": {
+      "type": "array",
+      "maxItems": 100,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    },
+    "artifact_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,9})?Z$"
+    },
+    "review_round": {"type": "integer", "minimum": 1, "maximum": 10000}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"outcome": {"const": "CONDITIONAL"}},
+        "required": ["outcome"]
+      },
+      "then": {"properties": {"conditions": {"minItems": 1}}}
+    }
+  ]
+}

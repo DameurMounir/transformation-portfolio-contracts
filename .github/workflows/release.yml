@@ -1,0 +1,136 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify, attest, and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONHASHSEED: "0"
+      SOURCE_DATE_EPOCH: "315532800"
+
+    steps:
+      - name: Check out tagged revision with history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Verify tag, version, and main ancestry
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          version="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$GITHUB_REF_NAME" = "v$version"
+          git tag --points-at "$GITHUB_SHA" | grep -Fx -- "$GITHUB_REF_NAME"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+
+      - name: Refuse release replacement
+        shell: bash
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists; replacement is prohibited." >&2
+            exit 1
+          fi
+
+      - name: Install project and release gates
+        run: |
+          python -m pip install 'pip>=26.1.2,<27'
+          python -m pip install 'setuptools>=83,<84' 'wheel>=0.45,<1'
+          python -m pip install -e '.[dev]'
+
+      - name: Run complete quality gate
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+          python -m mypy src
+          python -m pytest
+          python -m transformation_portfolio_contracts.cli verify-conformance --json
+          python -m transformation_portfolio_contracts.cli verify-example --json
+          python -m bandit -q -r src setup.py
+          python -m pip_audit --local --skip-editable --cache-dir "$RUNNER_TEMP/pip-audit-cache"
+
+      - name: Build twice and compare
+        run: |
+          python -m build --outdir dist-a
+          python -m build --outdir dist-b
+          (cd dist-a && sha256sum * | sort -k2) > dist-a.sha256
+          (cd dist-b && sha256sum * | sort -k2) > dist-b.sha256
+          diff -u dist-a.sha256 dist-b.sha256
+          python -m twine check dist-a/*
+
+      - name: Smoke-test wheel and resources
+        run: |
+          smoke_venv="$RUNNER_TEMP/tpc-release-smoke"
+          smoke_cwd="$RUNNER_TEMP/tpc-release-smoke-cwd"
+          catalog_json="$RUNNER_TEMP/tpc-release-catalog.json"
+          python -m venv "$smoke_venv"
+          "$smoke_venv/bin/python" -m pip install 'pip>=26.1.2,<27'
+          "$smoke_venv/bin/python" -m pip install dist-a/*.whl
+          mkdir "$smoke_cwd"
+          (
+            unset TPC_CONTRACT_ROOT
+            cd "$smoke_cwd"
+            "$smoke_venv/bin/portfolio-contracts" verify-events --help
+            "$smoke_venv/bin/portfolio-contracts" catalog --json > "$catalog_json"
+          )
+          python - "$catalog_json" "$smoke_venv/share/transformation-portfolio-contracts" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          actual = Path(json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))["root"])
+          expected = Path(sys.argv[2])
+          if actual.resolve(strict=True) != expected.resolve(strict=True):
+              raise SystemExit(f"wheel resource root mismatch: {actual} != {expected}")
+          PY
+          (
+            unset TPC_CONTRACT_ROOT
+            cd "$smoke_cwd"
+            "$smoke_venv/bin/portfolio-contracts" verify-conformance --json
+            "$smoke_venv/bin/portfolio-contracts" verify-example --json
+          )
+
+      - name: Stage release assets and checksums
+        run: |
+          mkdir dist
+          cp dist-a/* dist/
+          (cd dist && sha256sum *.whl *.tar.gz | sort -k2 > SHA256SUMS)
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+
+      - name: Publish immutable GitHub release
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            dist/*.whl dist/*.tar.gz dist/SHA256SUMS \
+            --verify-tag \
+            --title "Transformation Portfolio Contracts $GITHUB_REF_NAME" \
+            --generate-notes

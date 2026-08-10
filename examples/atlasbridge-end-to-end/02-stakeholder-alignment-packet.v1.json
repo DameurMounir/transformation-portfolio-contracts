@@ -1,0 +1,155 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/stakeholder-alignment-packet.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "StakeholderAlignmentPacket",
+  "artifact_id": "SAA-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "STAKEHOLDER_ALIGNMENT",
+  "status": "CONDITIONALLY_APPROVED",
+  "produced_at": "2026-08-08T13:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/stakeholder-alignment-agent",
+    "source_uri": "https://github.com/DameurMounir/stakeholder-alignment-agent",
+    "release": "v0.2.0",
+    "commit_sha": "2222222222222222222222222222222222222221",
+    "tree_sha": "2222222222222222222222222222222222222222",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [
+    {
+      "artifact_type": "RequirementsAssessment",
+      "artifact_id": "RQA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "c6fd82bba85027aa8948bdd0b1b21086c368e123be7053f662986093da1c064e",
+      "chain_sha256": "80a70e114742b5729bdb2bda106732cca041a45b08ab1e5675fe022e53775988",
+      "relationship": "DERIVED_FROM",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T12:00:00Z"
+    }
+  ],
+  "authority": {
+    "decision_id": "ATLASBRIDGE-ALIGN-001",
+    "actor_id": "ATLASBRIDGE-SPONSOR",
+    "role": "BUSINESS_SPONSOR",
+    "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+    "action": "APPROVE_WITH_CONDITIONS",
+    "outcome": "CONDITIONAL",
+    "rationale": "Option B is acceptable only after support training evidence is complete.",
+    "conditions": [
+      "Complete and evidence support training before go-live."
+    ],
+    "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+    "recorded_at": "2026-08-08T12:55:00Z",
+    "review_round": 1
+  },
+  "payload_sha256": "a7b9a419b86b19a3f40838126add99b9b90b256f98e3fa828fd3e6387d4706eb",
+  "artifact_sha256": "5e32975d54abd2f4362e3775a4df8beff76aac14611f880f5ea6162a994e1fd9",
+  "chain_sha256": "1ad8887e65ed9ea03dd038e17548c91521acc353546408635198b94c1603b524",
+  "payload": {
+    "alignment_decision_id": "ATLASBRIDGE-ALIGN-001",
+    "requirements_baseline_id": "ATLASBRIDGE-REQ-001",
+    "agreed_requirement_ids": [
+      "ATLASBRIDGE-REQ-IDENTITY-001",
+      "ATLASBRIDGE-REQ-TRAINING-001"
+    ],
+    "disputed_requirement_ids": [],
+    "undecided_requirement_ids": [],
+    "alignment_issues": [
+      {
+        "issue_id": "ATLASBRIDGE-ALIGN-ISSUE-001",
+        "requirement_ids": [
+          "ATLASBRIDGE-REQ-TRAINING-001"
+        ],
+        "status": "AGREED",
+        "summary": "Training is mandatory and remains an open pre-release condition.",
+        "option_ids": [
+          "OPT-B"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-ALIGN-DECISION-001",
+            "source_artifact_id": "ATLASBRIDGE-ALIGN-SOURCE-001",
+            "source_id": "decisions/alignment.md",
+            "source_path": "decisions/alignment.md",
+            "source_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+            "exact_quote": "Option B is selected subject to completion of support training.",
+            "quote_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ]
+      }
+    ],
+    "options": [
+      {
+        "option_id": "OPT-A",
+        "title": "Manual verification",
+        "description": "Retain the manual onboarding review.",
+        "conditions": []
+      },
+      {
+        "option_id": "OPT-B",
+        "title": "Controlled automation",
+        "description": "Automate risk scoring while preserving identity and approval controls.",
+        "conditions": [
+          "ATLASBRIDGE-COND-TRAINING-001"
+        ]
+      }
+    ],
+    "selected_option_id": "OPT-B",
+    "scoped_approvals": [
+      {
+        "decision_id": "ATLASBRIDGE-ALIGN-001",
+        "actor_id": "ATLASBRIDGE-SPONSOR",
+        "role": "BUSINESS_SPONSOR",
+        "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+        "action": "SELECT",
+        "outcome": "CONDITIONAL",
+        "rationale": "Option B is acceptable only after support training evidence is complete.",
+        "conditions": [
+          "Complete and evidence support training before go-live."
+        ],
+        "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+        "recorded_at": "2026-08-08T12:55:00Z",
+        "review_round": 1
+      }
+    ],
+    "open_conditions": [
+      {
+        "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+        "description": "Complete and evidence support training before go-live.",
+        "owner": "SUPPORT-LEAD",
+        "due_at": "2026-08-15T17:00:00Z",
+        "status": "OPEN",
+        "evidence_refs": []
+      }
+    ],
+    "sponsor_outcome": "CONDITIONAL_GO",
+    "decision_digest": "9e5e0e202016b25c1d66d8a29123ced032dc8af1170041983d94ba4116e080d1",
+    "decision": {
+      "decision_id": "ATLASBRIDGE-ALIGN-001",
+      "actor_id": "ATLASBRIDGE-SPONSOR",
+      "role": "BUSINESS_SPONSOR",
+      "authority_scope": "STAKEHOLDER_ALIGNMENT_OUTCOME",
+      "action": "APPROVE_WITH_CONDITIONS",
+      "outcome": "CONDITIONAL",
+      "rationale": "Option B is acceptable only after support training evidence is complete.",
+      "conditions": [
+        "Complete and evidence support training before go-live."
+      ],
+      "artifact_digest": "c4407b56c459399cbb8b97ebbbb6787f15b122a93e8aa20c46596c83ebb58b2d",
+      "recorded_at": "2026-08-08T12:55:00Z",
+      "review_round": 1
+    }
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "Conditional approval is not release authorization."
+  ]
+}

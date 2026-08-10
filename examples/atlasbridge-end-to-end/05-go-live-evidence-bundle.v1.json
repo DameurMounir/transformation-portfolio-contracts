@@ -1,0 +1,489 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/go-live-evidence-bundle.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "GoLiveEvidenceBundle",
+  "artifact_id": "GLE-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "GO_LIVE_EVIDENCE",
+  "status": "VALIDATED",
+  "produced_at": "2026-08-08T16:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/go-live-decision-agent",
+    "source_uri": "https://github.com/DameurMounir/go-live-decision-agent",
+    "release": "v0.2.0",
+    "commit_sha": "5555555555555555555555555555555555555551",
+    "tree_sha": "5555555555555555555555555555555555555552",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [
+    {
+      "artifact_type": "RequirementsAssessment",
+      "artifact_id": "RQA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "c6fd82bba85027aa8948bdd0b1b21086c368e123be7053f662986093da1c064e",
+      "chain_sha256": "80a70e114742b5729bdb2bda106732cca041a45b08ab1e5675fe022e53775988",
+      "relationship": "ASSEMBLES",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T12:00:00Z"
+    },
+    {
+      "artifact_type": "StakeholderAlignmentPacket",
+      "artifact_id": "SAA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "5e32975d54abd2f4362e3775a4df8beff76aac14611f880f5ea6162a994e1fd9",
+      "chain_sha256": "1ad8887e65ed9ea03dd038e17548c91521acc353546408635198b94c1603b524",
+      "relationship": "ASSEMBLES",
+      "status": "CONDITIONALLY_APPROVED",
+      "produced_at": "2026-08-08T13:00:00Z"
+    },
+    {
+      "artifact_type": "ProcessRedesignDecision",
+      "artifact_id": "PRD-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "0af34301d63308dd180a2b98622a3e0dfc53c7253b87dc21e3c65b0401ded1a5",
+      "chain_sha256": "42f57732a09e175c675a4279f538b119b701166d1a2b0aa7959106483b34cb13",
+      "relationship": "ASSEMBLES",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T14:00:00Z"
+    },
+    {
+      "artifact_type": "ChangeImpactPacket",
+      "artifact_id": "BCI-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "cca38fb16eddbbbd6a2248fa5741ad0eca1f2400743dc2b8cb3a019ec1c90417",
+      "chain_sha256": "3ba31acb3ed2e27ac292ac1d96c230d5953d95b572c65e7248848ab4f8e25a70",
+      "relationship": "ASSEMBLES",
+      "status": "VALIDATED",
+      "produced_at": "2026-08-08T15:00:00Z"
+    }
+  ],
+  "authority": null,
+  "payload_sha256": "03de2875ec74242a9e11cdcbeda2763052623a6ac9a9e4f059d8af3d7b405e9c",
+  "artifact_sha256": "770ccada6b35cd712fb512ce36044dc715fbc4df846ff3f24bbed409366cc365",
+  "chain_sha256": "2f90ee09a74905ba3011fbc59b8b657caae1c117ad87ee62cd5e267802f0ebbf",
+  "payload": {
+    "bundle_id": "ATLASBRIDGE-GO-LIVE-BUNDLE-001",
+    "release_candidate": {
+      "release_candidate_id": "ATLASBRIDGE-ONBOARDING-2",
+      "version": "2.0.0",
+      "scope_sha256": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d"
+    },
+    "operational_evidence": [
+      {
+        "evidence_id": "EVID-READINESS-COMPLETE-001",
+        "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+        "source_id": "operational/readiness-complete.md",
+        "source_path": "operational/readiness-complete.md",
+        "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+        "exact_quote": "The registered readiness control set completed verification for this candidate.",
+        "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+        "location": {
+          "start_line": 1,
+          "end_line": 1
+        },
+        "evidence_verdict": "SUPPORTS"
+      },
+      {
+        "evidence_id": "EVID-TRAINING-COMPLETE-001",
+        "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+        "source_id": "operational/training-complete.md",
+        "source_path": "operational/training-complete.md",
+        "source_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+        "exact_quote": "All support analysts completed the approved training and assessment.",
+        "quote_sha256": "8ccde3a62469a18654e3fe7ba40695b1b6326d55f39ceacf21bd73b41b2aa756",
+        "location": {
+          "start_line": 1,
+          "end_line": 1
+        },
+        "evidence_verdict": "SUPPORTS"
+      },
+      {
+        "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+        "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+        "source_id": "operational/rollback.md",
+        "source_path": "operational/rollback.md",
+        "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+        "exact_quote": "Production-like rollback rehearsal completed successfully.",
+        "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+        "location": {
+          "start_line": 1,
+          "end_line": 1
+        },
+        "evidence_verdict": "SUPPORTS"
+      }
+    ],
+    "upstream_conditions": [
+      {
+        "source_artifact_id": "SAA-ATLASBRIDGE-001",
+        "condition_id": "ATLASBRIDGE-COND-TRAINING-001",
+        "description": "Complete and evidence support training before go-live.",
+        "status": "OPEN",
+        "evidence_refs": []
+      }
+    ],
+    "upstream_obligations": [
+      {
+        "source_artifact_id": "BCI-ATLASBRIDGE-001",
+        "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+        "description": "Complete and evidence support training before release.",
+        "status": "OPEN",
+        "evidence_refs": []
+      }
+    ],
+    "gate_evidence": [
+      {
+        "gate_id": "G-01",
+        "gate_name": "RELEASE_IDENTITY_AND_SCOPE",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "PRD-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-02",
+        "gate_name": "BUSINESS_ACCEPTANCE",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "SAA-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-03",
+        "gate_name": "FUNCTIONAL_ACCEPTANCE",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "RQA-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-04",
+        "gate_name": "SECURITY_VERIFICATION",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-05",
+        "gate_name": "PRIVACY_AND_DATA_PROTECTION",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "RQA-ATLASBRIDGE-001",
+          "SAA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-06",
+        "gate_name": "DATA_MIGRATION",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "PRD-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-07",
+        "gate_name": "PERFORMANCE_AND_CAPACITY",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-08",
+        "gate_name": "RELIABILITY_AND_RECOVERY",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-09",
+        "gate_name": "OBSERVABILITY_AND_INCIDENT_RESPONSE",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-10",
+        "gate_name": "SUPPORT_READINESS",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-11",
+        "gate_name": "TRAINING_AND_COMMUNICATIONS",
+        "availability": "MISSING",
+        "source_artifact_ids": [
+          "SAA-ATLASBRIDGE-001",
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [],
+        "gap_reason": "Mandatory support training completion evidence is missing."
+      },
+      {
+        "gate_id": "G-12",
+        "gate_name": "ROLLBACK_AND_ROLLFORWARD",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "PRD-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-ROLLBACK-REHEARSAL-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/rollback.md",
+            "source_path": "operational/rollback.md",
+            "source_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "exact_quote": "Production-like rollback rehearsal completed successfully.",
+            "quote_sha256": "3ed2e4f9f783cd08afcd7d5b49faba9e2ec07776ddb299a9c5b356ae2d9b99c5",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-13",
+        "gate_name": "EXTERNAL_DEPENDENCIES",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "BCI-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      },
+      {
+        "gate_id": "G-14",
+        "gate_name": "RELEASE_AUTHORITY_AND_WINDOW",
+        "availability": "AVAILABLE",
+        "source_artifact_ids": [
+          "SAA-ATLASBRIDGE-001"
+        ],
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-READINESS-COMPLETE-001",
+            "source_artifact_id": "ATLASBRIDGE-OPERATIONS-EVIDENCE",
+            "source_id": "operational/readiness-complete.md",
+            "source_path": "operational/readiness-complete.md",
+            "source_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "exact_quote": "The registered readiness control set completed verification for this candidate.",
+            "quote_sha256": "e2df11090a243b62507698be28160ce7d3bd952570f5aa4e3a9d3ce828752b1a",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "gap_reason": null
+      }
+    ],
+    "bundle_manifest_sha256": "16a87a32e0814a9edaef6b1125c02fd57f2a2e61cce1be36775336da2bc1a6a5"
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "The bundle preserves an open training condition and is not release authorization."
+  ]
+}

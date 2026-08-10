@@ -1,0 +1,9 @@
+include LICENSE README.md SECURITY.md CONTRIBUTING.md CHANGELOG.md
+include Makefile pyproject.toml setup.py .editorconfig .gitignore
+include build_and_publish_transformation_portfolio_contracts_v1.0.0.sh
+recursive-include schemas *.json
+recursive-include registry *.json
+recursive-include conformance *.json
+recursive-include examples *.json
+recursive-include docs *.md
+recursive-include tests *.py

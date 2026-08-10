@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/common/risk-envelope.v1.schema.json",
+  "title": "RiskEnvelope.v1",
+  "description": "A portable risk record with treatment, controls and time-bounded acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "risk_id",
+    "category",
+    "severity",
+    "status",
+    "owner",
+    "source_artifact_refs",
+    "treatment",
+    "compensating_controls",
+    "acceptance_authority",
+    "expiry",
+    "residual_risk"
+  ],
+  "properties": {
+    "risk_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "category": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,127}$"},
+    "severity": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "status": {"type": "string", "enum": ["IDENTIFIED", "OPEN", "MITIGATING", "ACCEPTED", "CLOSED", "EXPIRED"]},
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "role"],
+      "properties": {
+        "actor_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "role": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,63}$"}
+      }
+    },
+    "source_artifact_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {"$ref": "artifact-envelope.v1.schema.json#/$defs/artifactReference"}
+    },
+    "treatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "description", "due_at"],
+      "properties": {
+        "strategy": {"type": "string", "enum": ["AVOID", "REDUCE", "TRANSFER", "ACCEPT"]},
+        "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "due_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,9})?Z$"
+        }
+      }
+    },
+    "compensating_controls": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "description", "status"],
+        "properties": {
+          "control_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+          "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+          "status": {"type": "string", "enum": ["PLANNED", "IMPLEMENTED", "VERIFIED", "FAILED"]}
+        }
+      }
+    },
+    "acceptance_authority": {
+      "oneOf": [
+        {"$ref": "human-decision.v1.schema.json"},
+        {"type": "null"}
+      ]
+    },
+    "expiry": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,9})?Z$"
+    },
+    "residual_risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["severity", "rationale"],
+      "properties": {
+        "severity": {"type": "string", "enum": ["NONE", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 4000}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "ACCEPTED"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "acceptance_authority": {"$ref": "human-decision.v1.schema.json"},
+          "expiry": {"type": "string"},
+          "treatment": {"properties": {"strategy": {"const": "ACCEPT"}}}
+        }
+      }
+    }
+  ]
+}

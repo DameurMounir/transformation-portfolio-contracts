@@ -1,0 +1,137 @@
+[build-system]
+requires = ["setuptools>=83,<84", "wheel>=0.45,<1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transformation-portfolio-contracts"
+version = "1.0.0"
+description = "Provider-neutral contracts and fail-closed validation for a transformation decision portfolio"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Mounir Dameur" },
+]
+keywords = [
+  "business-analysis",
+  "governance",
+  "interoperability",
+  "json-schema",
+  "lineage",
+  "transformation",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+dependencies = [
+  "jsonschema[format]>=4.23,<5",
+  "rfc8785>=0.1.4,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "bandit[toml]>=1.8,<2",
+  "build>=1.2,<2",
+  "mypy>=1.14,<2",
+  "pip-audit>=2.7,<3",
+  "pytest>=9.0.3,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+  "setuptools>=83,<84",
+  "twine>=6,<7",
+  "wheel>=0.45,<1",
+]
+
+[project.scripts]
+portfolio-contracts = "transformation_portfolio_contracts.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/DameurMounir/transformation-portfolio-contracts"
+Documentation = "https://github.com/DameurMounir/transformation-portfolio-contracts/tree/main/docs"
+Issues = "https://github.com/DameurMounir/transformation-portfolio-contracts/issues"
+Changelog = "https://github.com/DameurMounir/transformation-portfolio-contracts/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["transformation_portfolio_contracts*"]
+
+[tool.setuptools.package-data]
+transformation_portfolio_contracts = ["py.typed"]
+
+[tool.setuptools.data-files]
+"share/transformation-portfolio-contracts/schemas/common" = ["schemas/common/*.json"]
+"share/transformation-portfolio-contracts/schemas/stages" = ["schemas/stages/*.json"]
+"share/transformation-portfolio-contracts/registry" = ["registry/*.json"]
+"share/transformation-portfolio-contracts/conformance/valid" = ["conformance/valid/*.json"]
+"share/transformation-portfolio-contracts/conformance/invalid" = ["conformance/invalid/*.json"]
+"share/transformation-portfolio-contracts/conformance/expected-results" = ["conformance/expected-results/*.json"]
+"share/transformation-portfolio-contracts/examples/atlasbridge-end-to-end" = [
+  "examples/atlasbridge-end-to-end/*.json",
+  "examples/atlasbridge-end-to-end/*.jsonl",
+  "examples/atlasbridge-end-to-end/*.md",
+]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers --cov=transformation_portfolio_contracts --cov-branch --cov-report=term-missing:skip-covered --cov-report=xml --cov-fail-under=90"
+testpaths = ["tests"]
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["transformation_portfolio_contracts"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+  "raise AssertionError",
+  "raise NotImplementedError",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PIE", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["B011"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+pretty = true
+show_error_codes = true
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["rfc8785"]
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests", "build", "dist"]
+skips = []

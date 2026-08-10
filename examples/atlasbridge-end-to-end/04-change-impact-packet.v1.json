@@ -1,0 +1,160 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/change-impact-packet.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "ChangeImpactPacket",
+  "artifact_id": "BCI-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "CHANGE_IMPACT",
+  "status": "VALIDATED",
+  "produced_at": "2026-08-08T15:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/business-change-impact-agent",
+    "source_uri": "https://github.com/DameurMounir/business-change-impact-agent",
+    "release": "v0.2.0",
+    "commit_sha": "4444444444444444444444444444444444444441",
+    "tree_sha": "4444444444444444444444444444444444444442",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [
+    {
+      "artifact_type": "ProcessRedesignDecision",
+      "artifact_id": "PRD-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "0af34301d63308dd180a2b98622a3e0dfc53c7253b87dc21e3c65b0401ded1a5",
+      "chain_sha256": "42f57732a09e175c675a4279f538b119b701166d1a2b0aa7959106483b34cb13",
+      "relationship": "DERIVED_FROM",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T14:00:00Z"
+    }
+  ],
+  "authority": null,
+  "payload_sha256": "8d8041c3af5b706ed345b32b6a7184b5f5f9a6045e93fc059be91836b63d527a",
+  "artifact_sha256": "cca38fb16eddbbbd6a2248fa5741ad0eca1f2400743dc2b8cb3a019ec1c90417",
+  "chain_sha256": "3ba31acb3ed2e27ac292ac1d96c230d5953d95b572c65e7248848ab4f8e25a70",
+  "payload": {
+    "change_package_id": "ATLASBRIDGE-CHANGE-001",
+    "selected_process_option_id": "OPT-B",
+    "derived_from_artifact_id": "PRD-ATLASBRIDGE-001",
+    "derived_from_artifact_sha256": "0af34301d63308dd180a2b98622a3e0dfc53c7253b87dc21e3c65b0401ded1a5",
+    "business_graph_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+    "rulebook_sha256": "84c3fef797246c49e236f789e5b50ac65993fb907e9357092053eee6998c5324",
+    "case_digest": "9c400a5aa7429186905d0101694e60449aa1025aca8eba13287e9aeb4b85831d",
+    "analysis_digest": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+    "portfolio_chain_sha256": "42f57732a09e175c675a4279f538b119b701166d1a2b0aa7959106483b34cb13",
+    "direct_impacts": [
+      {
+        "impact_id": "IMPACT-SUPPORT-TRAINING",
+        "impact_kind": "DIRECT",
+        "category": "PEOPLE",
+        "target_id": "TEAM-SUPPORT",
+        "summary": "Support analysts require training on automated scoring and exception routing.",
+        "severity": "HIGH",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-IMPACT-TRAINING-001",
+            "source_artifact_id": "ATLASBRIDGE-CHANGE-SOURCE-001",
+            "source_id": "impact/training.md",
+            "source_path": "impact/training.md",
+            "source_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+            "exact_quote": "Support staff must complete the approved training module before release.",
+            "quote_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "dependency_ids": [
+          "ATLASBRIDGE-COND-TRAINING-001"
+        ],
+        "condition": null,
+        "rationale": "The selected workflow changes support handling of scoring exceptions."
+      }
+    ],
+    "indirect_impacts": [
+      {
+        "impact_id": "IMPACT-SUPPORT-SCHEDULE",
+        "impact_kind": "INDIRECT",
+        "category": "PROCESS",
+        "target_id": "PROCESS-SUPPORT-ROSTER",
+        "summary": "Training attendance changes the support roster before release.",
+        "severity": "MEDIUM",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-IMPACT-TRAINING-002",
+            "source_artifact_id": "ATLASBRIDGE-CHANGE-SOURCE-001",
+            "source_id": "impact/training.md",
+            "source_path": "impact/training.md",
+            "source_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+            "exact_quote": "Support staff must complete the approved training module before release.",
+            "quote_sha256": "5e4973bf6701d3a772ce10b32f9ed4129eb73a6c8553c82690070adaeab99669",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "dependency_ids": [
+          "IMPACT-SUPPORT-TRAINING"
+        ],
+        "condition": null,
+        "rationale": "Training temporarily reduces roster capacity."
+      }
+    ],
+    "conditional_impacts": [],
+    "explicitly_unaffected": [
+      {
+        "impact_id": "IMPACT-FINANCE-UNAFFECTED",
+        "impact_kind": "UNAFFECTED",
+        "category": "PROCESS",
+        "target_id": "PROCESS-FINANCE-SETTLEMENT",
+        "summary": "Finance settlement remains outside the onboarding workflow boundary.",
+        "severity": "NONE",
+        "evidence_refs": [
+          {
+            "evidence_id": "EVID-IMPACT-SCOPE-001",
+            "source_artifact_id": "ATLASBRIDGE-PROCESS-SOURCE-001",
+            "source_id": "process/to-be.md",
+            "source_path": "process/to-be.md",
+            "source_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+            "exact_quote": "The TO-BE workflow routes verified cases to automated risk scoring.",
+            "quote_sha256": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+            "location": {
+              "start_line": 1,
+              "end_line": 1
+            },
+            "evidence_verdict": "SUPPORTS"
+          }
+        ],
+        "dependency_ids": [],
+        "condition": null,
+        "rationale": "No finance data object, role or control is connected to the selected change nodes."
+      }
+    ],
+    "obligations": [
+      {
+        "obligation_id": "OBLIGATION-SUPPORT-TRAINING",
+        "impact_ids": [
+          "IMPACT-SUPPORT-TRAINING"
+        ],
+        "obligation_type": "TRAINING",
+        "description": "Complete and evidence support training before release.",
+        "owner": "SUPPORT-LEAD",
+        "status": "OPEN",
+        "due_at": "2026-08-15T17:00:00Z",
+        "evidence_refs": []
+      }
+    ],
+    "collisions": [],
+    "risks": []
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "The impact analysis does not satisfy or waive open obligations."
+  ]
+}

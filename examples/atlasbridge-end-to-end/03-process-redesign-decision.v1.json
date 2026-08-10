@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-portfolio-contracts/v1.0.0/schemas/stages/process-redesign-decision.v1.schema.json",
+  "spec_version": "1.0.0",
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "artifact_type": "ProcessRedesignDecision",
+  "artifact_id": "PRD-ATLASBRIDGE-001",
+  "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+  "case_id": "ATLASBRIDGE-ONBOARDING-001",
+  "stage": "PROCESS_REDESIGN",
+  "status": "HUMAN_CONFIRMED",
+  "produced_at": "2026-08-08T14:00:00Z",
+  "producer": {
+    "repository": "DameurMounir/process-redesign-agent",
+    "source_uri": "https://github.com/DameurMounir/process-redesign-agent",
+    "release": "v0.2.0",
+    "commit_sha": "3333333333333333333333333333333333333331",
+    "tree_sha": "3333333333333333333333333333333333333332",
+    "tool_version": "0.2.0"
+  },
+  "inputs": [
+    {
+      "artifact_type": "RequirementsAssessment",
+      "artifact_id": "RQA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "c6fd82bba85027aa8948bdd0b1b21086c368e123be7053f662986093da1c064e",
+      "chain_sha256": "80a70e114742b5729bdb2bda106732cca041a45b08ab1e5675fe022e53775988",
+      "relationship": "DERIVED_FROM",
+      "status": "HUMAN_CONFIRMED",
+      "produced_at": "2026-08-08T12:00:00Z"
+    },
+    {
+      "artifact_type": "StakeholderAlignmentPacket",
+      "artifact_id": "SAA-ATLASBRIDGE-001",
+      "transformation_id": "ATLASBRIDGE-ONBOARDING-TRANSFORMATION-001",
+      "schema_version": "1.0.0",
+      "sha256": "5e32975d54abd2f4362e3775a4df8beff76aac14611f880f5ea6162a994e1fd9",
+      "chain_sha256": "1ad8887e65ed9ea03dd038e17548c91521acc353546408635198b94c1603b524",
+      "relationship": "CONSTRAINED_BY",
+      "status": "CONDITIONALLY_APPROVED",
+      "produced_at": "2026-08-08T13:00:00Z"
+    }
+  ],
+  "authority": {
+    "decision_id": "ATLASBRIDGE-PROCESS-001",
+    "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+    "role": "PROCESS_DECISION_OWNER",
+    "authority_scope": "PROCESS_OPTION_SELECTION",
+    "action": "SELECT",
+    "outcome": "APPROVED",
+    "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+    "conditions": [],
+    "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+    "recorded_at": "2026-08-08T13:55:00Z",
+    "review_round": 1
+  },
+  "payload_sha256": "4b76237a6337b929c22a45b621379b35ef32028d135dfe8432e654b6db08be91",
+  "artifact_sha256": "0af34301d63308dd180a2b98622a3e0dfc53c7253b87dc21e3c65b0401ded1a5",
+  "chain_sha256": "42f57732a09e175c675a4279f538b119b701166d1a2b0aa7959106483b34cb13",
+  "payload": {
+    "process_decision_id": "ATLASBRIDGE-PROCESS-001",
+    "selected_option_id": "OPT-B",
+    "constraining_condition_ids": [
+      "ATLASBRIDGE-COND-TRAINING-001"
+    ],
+    "comparison_digest": "170e958111a311950c81af9b7cd2d7c66477aafc4c51dab7641013c0101ab66f",
+    "options_assessed": [
+      {
+        "option_id": "OPT-A",
+        "title": "Manual verification",
+        "control_ids": [
+          "CTRL-IDENTITY",
+          "CTRL-HUMAN-APPROVAL"
+        ],
+        "effort_person_days": 30,
+        "cost_minor_units": 2500000,
+        "currency": "MAD",
+        "duration_days": 20,
+        "change_risk": "LOW"
+      },
+      {
+        "option_id": "OPT-B",
+        "title": "Controlled automation",
+        "control_ids": [
+          "CTRL-IDENTITY",
+          "CTRL-HUMAN-APPROVAL",
+          "CTRL-AUDIT-LOG"
+        ],
+        "effort_person_days": 45,
+        "cost_minor_units": 4000000,
+        "currency": "MAD",
+        "duration_days": 30,
+        "change_risk": "MEDIUM"
+      }
+    ],
+    "to_be_process": {
+      "process_id": "ATLASBRIDGE-TO-BE-001",
+      "version": "1.0.0",
+      "steps": [
+        {
+          "step_id": "STEP-IDENTITY-VERIFY",
+          "name": "Verify identity evidence",
+          "owner_role": "ONBOARDING_ANALYST",
+          "predecessor_step_ids": [],
+          "controls": [
+            "CTRL-IDENTITY"
+          ]
+        },
+        {
+          "step_id": "STEP-RISK-SCORE",
+          "name": "Calculate automated risk score and route exceptions",
+          "owner_role": "ONBOARDING_SYSTEM",
+          "predecessor_step_ids": [
+            "STEP-IDENTITY-VERIFY"
+          ],
+          "controls": [
+            "CTRL-HUMAN-APPROVAL",
+            "CTRL-AUDIT-LOG"
+          ]
+        }
+      ]
+    },
+    "controls_preserved": [
+      "CTRL-IDENTITY",
+      "CTRL-HUMAN-APPROVAL",
+      "CTRL-AUDIT-LOG"
+    ],
+    "assumptions": [
+      "The existing identity provider remains available during migration."
+    ],
+    "target_metrics": [
+      {
+        "metric_id": "METRIC-CYCLE-TIME",
+        "name": "Median onboarding cycle time",
+        "unit": "minutes",
+        "target_value": "30",
+        "measurement_window_days": 30
+      }
+    ],
+    "selection": {
+      "decision_id": "ATLASBRIDGE-PROCESS-001",
+      "actor_id": "ATLASBRIDGE-PROCESS-OWNER",
+      "role": "PROCESS_DECISION_OWNER",
+      "authority_scope": "PROCESS_OPTION_SELECTION",
+      "action": "SELECT",
+      "outcome": "APPROVED",
+      "rationale": "Option B offers the best controlled trade-off and preserves mandatory controls.",
+      "conditions": [],
+      "artifact_digest": "a225479d2b455ae254237c2544ecf2f2cfdd59222df503cad566a88731b72fbf",
+      "recorded_at": "2026-08-08T13:55:00Z",
+      "review_round": 1
+    }
+  },
+  "limitations": [
+    "Synthetic AtlasBridge case; producer commit and tree identifiers are demonstrative.",
+    "The selection does not authorize production implementation."
+  ]
+}
