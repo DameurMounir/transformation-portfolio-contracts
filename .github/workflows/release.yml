@@ -2,6 +2,13 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      target_tag:
+        description: "Existing immutable release tag to recover"
+        required: true
+        type: choice
+        options:
+          - v1.0.0
   push:
     tags:
       - "v*.*.*"
@@ -10,9 +17,10 @@ permissions:
   contents: write
   id-token: write
   attestations: write
+  artifact-metadata: write
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-${{ inputs.target_tag || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -26,10 +34,45 @@ jobs:
       SOURCE_DATE_EPOCH: "315532800"
 
     steps:
-      - name: Check out tagged revision with history
+      - name: Select release target
+        id: target
+        shell: bash
+        env:
+          REQUESTED_TAG: ${{ inputs.target_tag }}
+        run: |
+          set -Eeuo pipefail
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            test "$GITHUB_REF" = "refs/heads/main"
+            test "$REQUESTED_TAG" = "v1.0.0"
+            release_tag="$REQUESTED_TAG"
+            release_commit="7362a85f381842d5178fc8b12bad48759fd46ec9"
+            recovery_mode="true"
+          elif [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            case "$GITHUB_REF" in
+              refs/tags/v*.*.*) ;;
+              *)
+                echo "Release push must target a semantic-version tag." >&2
+                exit 1
+                ;;
+            esac
+            release_tag="$GITHUB_REF_NAME"
+            release_commit="$GITHUB_SHA"
+            recovery_mode="false"
+          else
+            echo "Unsupported release event: $GITHUB_EVENT_NAME" >&2
+            exit 1
+          fi
+          {
+            echo "tag=$release_tag"
+            echo "commit=$release_commit"
+            echo "recovery_mode=$recovery_mode"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check out exact release revision with history
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ steps.target.outputs.commit }}
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -38,21 +81,54 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
 
-      - name: Verify tag, version, and main ancestry
+      - name: Verify tag, source identity, version, and main ancestry
         shell: bash
+        env:
+          RELEASE_TARGET_TAG: ${{ steps.target.outputs.tag }}
+          RELEASE_TARGET_COMMIT: ${{ steps.target.outputs.commit }}
+          RECOVERY_MODE: ${{ steps.target.outputs.recovery_mode }}
         run: |
           set -Eeuo pipefail
+          test "$(git rev-parse HEAD)" = "$RELEASE_TARGET_COMMIT"
           version="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
-          test "$GITHUB_REF_NAME" = "v$version"
-          git tag --points-at "$GITHUB_SHA" | grep -Fx -- "$GITHUB_REF_NAME"
+          test "$RELEASE_TARGET_TAG" = "v$version"
+          git tag --points-at "$RELEASE_TARGET_COMMIT" | grep -Fx -- "$RELEASE_TARGET_TAG"
+
+          if [ "$RECOVERY_MODE" = "true" ]; then
+            test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
+            test "$GITHUB_REF" = "refs/heads/main"
+            test "$RELEASE_TARGET_TAG" = "v1.0.0"
+            test "$(git rev-parse "$RELEASE_TARGET_TAG^{tag}")" = \
+              "75ab3f4c6ad171b7c2e6f3ad33512c774a44a126"
+            test "$(git rev-parse "$RELEASE_TARGET_TAG^{commit}")" = \
+              "7362a85f381842d5178fc8b12bad48759fd46ec9"
+            test "$(git rev-parse "$RELEASE_TARGET_TAG^{tree}")" = \
+              "194c5907711559ffeedc4fb11f104e92cabe132d"
+          else
+            test "$GITHUB_EVENT_NAME" = "push"
+            test "$GITHUB_REF" = "refs/tags/$RELEASE_TARGET_TAG"
+            test "$GITHUB_SHA" = "$RELEASE_TARGET_COMMIT"
+          fi
+
           git fetch --no-tags origin main
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+          git merge-base --is-ancestor "$RELEASE_TARGET_COMMIT" origin/main
+          {
+            echo "RELEASE_TAG=$RELEASE_TARGET_TAG"
+            echo "RELEASE_SOURCE_COMMIT=$RELEASE_TARGET_COMMIT"
+            echo "RECOVERY_MODE=$RECOVERY_MODE"
+          } >> "$GITHUB_ENV"
+          if [ "$RECOVERY_MODE" = "true" ]; then
+            {
+              echo "RELEASE_TAG_OBJECT=75ab3f4c6ad171b7c2e6f3ad33512c774a44a126"
+              echo "RELEASE_SOURCE_TREE=194c5907711559ffeedc4fb11f104e92cabe132d"
+            } >> "$GITHUB_ENV"
+          fi
 
       - name: Refuse release replacement
         shell: bash
         run: |
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            echo "Release $GITHUB_REF_NAME already exists; replacement is prohibited." >&2
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; replacement is prohibited." >&2
             exit 1
           fi
 
@@ -120,7 +196,7 @@ jobs:
           cp dist-a/* dist/
           (cd dist && sha256sum *.whl *.tar.gz | sort -k2 > SHA256SUMS)
 
-      - name: Attest build provenance
+      - name: Attest GitHub Actions builder provenance
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: |
@@ -128,10 +204,91 @@ jobs:
             dist/*.tar.gz
             dist/SHA256SUMS
 
+      - name: Create recovery source-material predicate
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          predicate="$RUNNER_TEMP/recovery-source-material.json"
+          python - "$predicate" <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          repository_uri = f"git+{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}"
+          predicate = {
+              "name": "recover-v1.0.0-release",
+              "command": [
+                  "github-actions",
+                  ".github/workflows/release.yml",
+                  "workflow_dispatch",
+                  "--target-tag",
+                  os.environ["RELEASE_TAG"],
+              ],
+              "materials": [
+                  {
+                      "name": "annotated tag object refs/tags/v1.0.0",
+                      "uri": f"{repository_uri}@refs/tags/{os.environ['RELEASE_TAG']}",
+                      "digest": {"sha1": os.environ["RELEASE_TAG_OBJECT"]},
+                  },
+                  {
+                      "name": "release source commit",
+                      "uri": f"{repository_uri}@{os.environ['RELEASE_SOURCE_COMMIT']}",
+                      "digest": {"sha1": os.environ["RELEASE_SOURCE_COMMIT"]},
+                  },
+                  {
+                      "name": "release source tree",
+                      "uri": (
+                          f"{repository_uri}@{os.environ['RELEASE_SOURCE_COMMIT']}#tree"
+                      ),
+                      "digest": {"sha1": os.environ["RELEASE_SOURCE_TREE"]},
+                  },
+              ],
+              "byproducts": {
+                  "releaseTag": os.environ["RELEASE_TAG"],
+                  "version": "1.0.0",
+                  "verification": {
+                      "annotatedTagObject": True,
+                      "tagCommit": True,
+                      "sourceTree": True,
+                      "mainAncestor": True,
+                      "deterministicBuild": True,
+                      "qualitySecurityAndSmokeGates": True,
+                  },
+              },
+              "environment": {
+                  "runner": "github-hosted",
+                  "workflowRef": os.environ["GITHUB_WORKFLOW_REF"],
+                  "workflowCommit": os.environ["GITHUB_SHA"],
+                  "workflowGitRef": os.environ["GITHUB_REF"],
+                  "runId": os.environ["GITHUB_RUN_ID"],
+                  "runAttempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              },
+          }
+          Path(sys.argv[1]).write_text(
+              json.dumps(predicate, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          python -m json.tool "$predicate" >/dev/null
+          sha256sum "$predicate"
+
+      - name: Attest exact recovery source material
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+          predicate-type: https://in-toto.io/attestation/link/v0.3
+          predicate-path: ${{ runner.temp }}/recovery-source-material.json
+
       - name: Publish immutable GitHub release
         run: |
-          gh release create "$GITHUB_REF_NAME" \
+          gh release create "$RELEASE_TAG" \
             dist/*.whl dist/*.tar.gz dist/SHA256SUMS \
             --verify-tag \
-            --title "Transformation Portfolio Contracts $GITHUB_REF_NAME" \
+            --title "Transformation Portfolio Contracts $RELEASE_TAG" \
             --generate-notes
