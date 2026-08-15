@@ -26,7 +26,10 @@ jobs:
 
     steps:
       - name: Check out exact revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,6 +37,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: pyproject.toml
+
+      - name: Verify G0 identity evidence
+        if: matrix.python-version == '3.12'
+        run: python scripts/verify_migration_evidence.py
 
       - name: Install project and development gates
         run: |
