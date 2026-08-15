@@ -1,0 +1,23 @@
+{
+  "profile": "TPC-JCS-SHA256-v1",
+  "public_test_key_hex": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+  "signature_profile": "TPC-HMAC-SHA256-v1",
+  "vectors": [
+    {
+      "name": "policy_context",
+      "sha256": "30bb9e5a7f586383d3225e0dbaa81dd2b361e0dc2963a6ba4f4a9af02ea84532"
+    },
+    {
+      "name": "payload",
+      "sha256": "f492653ac06597d578d1fa339c8303b4bb9abd933b0e92592989cf344d40b164"
+    },
+    {
+      "name": "envelope_projection",
+      "sha256": "5bb4e813b762b63b59593f35cd7c33372dde8d80e9eeefebd7b060dd355fbb2b"
+    },
+    {
+      "name": "hmac_signature",
+      "sha256": "7b2c1478584fd94fdb9c08b7551b3392b072737fd6b81e970ec34d9960e79ad5"
+    }
+  ]
+}

@@ -18,6 +18,22 @@ from .events import (
     verify_agent_event_chain,
 )
 from .lineage import LineageResult, calculate_chain_sha256, verify_lineage
+from .runtime_envelope import (
+    ActorReference,
+    ArtifactReference,
+    CorrelationReference,
+    EvidenceReference,
+    RuntimeEnvelopeModel,
+    RuntimeEnvelopeResult,
+    SignatureMetadata,
+    TenantReference,
+    hmac_signature_value,
+    runtime_envelope_digest,
+    runtime_envelope_projection,
+    sign_runtime_envelope,
+    validate_runtime_envelope_schema,
+    verify_runtime_envelope,
+)
 from .validation import (
     ValidationResult,
     decision_subject_digest,
@@ -33,8 +49,16 @@ except PackageNotFoundError:  # Source checkout before editable installation.
 
 __all__ = [
     "DIGEST_PROFILE",
+    "ActorReference",
+    "ArtifactReference",
+    "CorrelationReference",
     "EventChainResult",
+    "EvidenceReference",
     "LineageResult",
+    "RuntimeEnvelopeModel",
+    "RuntimeEnvelopeResult",
+    "SignatureMetadata",
+    "TenantReference",
     "ValidationResult",
     "__version__",
     "artifact_digest",
@@ -44,10 +68,16 @@ __all__ = [
     "decision_subject_projection",
     "digest_json",
     "event_digest",
+    "hmac_signature_value",
     "payload_digest",
+    "runtime_envelope_digest",
+    "runtime_envelope_projection",
+    "sign_runtime_envelope",
     "validate_document",
+    "validate_runtime_envelope_schema",
     "verify_agent_event",
     "verify_agent_event_chain",
     "verify_artifact_integrity",
     "verify_lineage",
+    "verify_runtime_envelope",
 ]

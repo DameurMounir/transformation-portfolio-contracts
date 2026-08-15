@@ -1,0 +1,8 @@
+{
+  "invalid/expired.json": "ENVELOPE_EXPIRED",
+  "invalid/tampered-payload.json": "PAYLOAD_DIGEST_MISMATCH",
+  "invalid/unsupported-version.json": "SCHEMA_CONST",
+  "invalid/wrong-signature.json": "SIGNATURE_MISMATCH",
+  "invalid/zero-traceparent.json": "REFERENCE_MODEL_INVALID",
+  "valid/minimal.json": "VALID"
+}

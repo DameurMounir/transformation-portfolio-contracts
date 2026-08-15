@@ -50,8 +50,37 @@ any required check blocks consumption.
 | `GoLiveDecisionPacket.v1` | `go-live-decision-agent` | Human release authority and audit |
 
 Common contracts include `ArtifactEnvelope.v1`, `EvidenceReference.v1`, `Finding.v1`,
-`HumanDecision.v1`, `RiskEnvelope.v1`, and `AgentEvent.v1`. All schemas use JSON Schema Draft
-2020-12. The machine-readable source of truth is [`registry/contract-catalog.json`](registry/contract-catalog.json).
+`HumanDecision.v1`, `RiskEnvelope.v1`, and `AgentEvent.v1`. The unreleased
+`RuntimeEnvelope.v1.1` candidate adds actor/accountable-principal, tenant/workspace, trace,
+idempotency, policy-context, payload, evidence, expiry, digest, and signature bindings for governed
+runtime messages. All schemas use JSON Schema Draft 2020-12. The machine-readable source of truth
+is [`registry/contract-catalog.json`](registry/contract-catalog.json).
+
+### Runtime envelope v1.1 candidate
+
+`schemas/envelope/v1.1.json` defines the framework-neutral runtime wrapper required by the governed
+orchestration roadmap. Its Python reference API provides strict Pydantic models, RFC 8785/SHA-256
+digest binding, domain-separated HMAC-SHA-256 signing, constant-time verification, injected key
+resolution, exact UTC validity windows, and fail-closed diagnostics.
+
+```python
+from datetime import datetime, timezone
+
+from transformation_portfolio_contracts.runtime_envelope import verify_runtime_envelope
+
+result = verify_runtime_envelope(
+    envelope,
+    key_resolver=key_provider.resolve,
+    now=datetime.now(timezone.utc),
+)
+```
+
+A structurally valid and signature-valid envelope is not an authorization decision. Consumers must
+still evaluate the referenced authority, capability, policy, approval, and evidence contracts before
+execution. The contract is a candidate until a later signed `v1.1.0` release; current adopters must
+pin an exact commit. See the complete
+[runtime-envelope contract](docs/contracts/runtime-envelope-v1.1.md) and
+[implementation status](docs/status/runtime-envelope-v1.1.md).
 
 ## Quick start
 
@@ -135,11 +164,12 @@ underlying evidence is true, the decision is approved, or a deployment is author
 ```text
 schemas/       Normative Draft 2020-12 contracts
 registry/      Contract catalog, compatibility, and producer-consumer rules
-conformance/   Valid and invalid fixtures with expected outcomes
+conformance/   Valid and invalid portfolio fixtures with expected outcomes
+fixtures/      Runtime-envelope vectors and fail-closed tamper cases
 examples/      Synthetic AtlasBridge end-to-end chain
-src/           Canonicalization, validation, lineage, and CLI implementation
-tests/         Unit, negative, determinism, and conformance tests
-docs/          Architecture, governance, digest profile, and adoption guide
+src/           Canonicalization, validation, lineage, envelope, and CLI implementation
+tests/         Unit, negative, determinism, security, and conformance tests
+docs/          Architecture, governance, contract, digest, status, and adoption guidance
 ```
 
 ## Integration boundary
