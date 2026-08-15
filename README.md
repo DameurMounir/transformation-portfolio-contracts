@@ -4,6 +4,12 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11--3.13-3776ab.svg)](pyproject.toml)
 
+> **Repository identity control:** G0 records a proposed transition to
+> `transformation-agent-contracts`. No repository setting, release, package name, schema identifier,
+> or consumer reference is changed by the migration-manifest branch. See the
+> [current status](docs/status/current.md) and
+> [identity manifest](docs/migration/identity-manifest.md).
+
 `transformation-portfolio-contracts` is the provider-neutral interoperability specification for a
 five-stage business-transformation portfolio. It defines immutable, schema-validated,
 digest-bound artifacts that independent repositories can produce and consume without importing

@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "captured_at": "2026-08-15T10:16:19+01:00",
+  "scope": "G0 repository identity evidence only",
+  "source": {
+    "owner": "DameurMounir",
+    "repository": "transformation-portfolio-contracts",
+    "repository_id": 1330262280,
+    "visibility": "public",
+    "default_branch": "main",
+    "commit": "4fb6af9344ba1b903fdda96891a18eb708ab82ea",
+    "tree": "e44be69ff1cd60fe9bb6f45a1b915db3fa7b6e27",
+    "commit_signature": {
+      "status": "VERIFIED",
+      "reason": "valid",
+      "verified_at": "2026-08-14T12:15:21Z"
+    },
+    "branch_protection": {
+      "status": "NOT_VERIFIED_IN_THIS_CAPTURE",
+      "reason": "The connected integration returned HTTP 403 for the protection endpoint."
+    },
+    "pages": {
+      "status": "NOT_CONFIGURED",
+      "evidence": "The GitHub Pages endpoint returned HTTP 404 and no CNAME, github.io, or Pages workflow reference was present."
+    },
+    "active_workflows": [
+      {
+        "id": 331487498,
+        "name": "CI",
+        "path": ".github/workflows/ci.yml"
+      },
+      {
+        "id": 331487499,
+        "name": "Release",
+        "path": ".github/workflows/release.yml"
+      }
+    ]
+  },
+  "release_v1_0_0": {
+    "release_id": 370636962,
+    "immutable": true,
+    "tag_object": "75ab3f4c6ad171b7c2e6f3ad33512c774a44a126",
+    "tag_commit": "7362a85f381842d5178fc8b12bad48759fd46ec9",
+    "tag_tree": "194c5907711559ffeedc4fb11f104e92cabe132d",
+    "tag_signature": "UNSIGNED",
+    "assets": {
+      "SHA256SUMS": "47cd90b5a526737df86046fde2a1ca4f7cd05d6c95733a4219ec15477f2981a9",
+      "wheel": "b4ccab6f65443bc29dcc065ddd6c74e2952ba7e8d1ab2c518433eec1c29853a9",
+      "sdist": "e05ef917c227310106ed1d8a55584dacdf6c85f436a5130fa66d5d4c031a3255"
+    }
+  },
+  "target": {
+    "repository": "transformation-agent-contracts",
+    "availability": "AVAILABLE_AS_OF_CAPTURE",
+    "evidence": "GitHub repository lookup returned HTTP 404.",
+    "recommended_path": "RENAME_IN_PLACE",
+    "execution_status": "BLOCKED"
+  },
+  "backup": {
+    "artifact": "source-contracts-all.bundle",
+    "size_bytes": 175255,
+    "sha256": "63b90e98f049931a7681fc1a06d892e800ed9718bae5757667b7d408dee3a0f0",
+    "complete_history": true,
+    "ref_count": 7,
+    "restore_rehearsal": "PASS"
+  },
+  "reference_inventory": {
+    "repositories_scanned": [
+      {
+        "repository": "RAGForge",
+        "commit": "29779f9571a9f93e0a4ca57bfe6dc80b46e57ed4",
+        "tree": "16398bca53349d6cbbe38f929c27228982a3b81b",
+        "direct_reference_files": 0,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "business-change-impact-agent",
+        "commit": "0f6abd5ba7e18c53f3fd0b43fbe5ede6f2001746",
+        "tree": "46bb10630ee620e4244a9a64a946bc6730bfe009",
+        "direct_reference_files": 0,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "go-live-decision-agent",
+        "commit": "9b74c41b562c692814905e674f6e8a6e55e5a929",
+        "tree": "a3b03f47bbfa98518eed74000f11f123d64a9e44",
+        "direct_reference_files": 0,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "process-redesign-agent",
+        "commit": "93a1cce7c25359041b75de62ed9ff7939e04466b",
+        "tree": "edf6e159014968e13f3ead502376544092da91f8",
+        "direct_reference_files": 0,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "requirements-quality-agent",
+        "commit": "f08fa2fd08817e60a09bc6a4275a3584674e8580",
+        "tree": "b5815f7647edd71f6b6d2446c5226e6b2c37a437",
+        "direct_reference_files": 10,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "stakeholder-alignment-agent",
+        "commit": "7ed3dd96800dd1f5de1e3bc5b1678bc59d045b8e",
+        "tree": "7638d00b868627ae97e938b952c242e6b4ae23e4",
+        "direct_reference_files": 0,
+        "hosted_action_reference_files": 0
+      },
+      {
+        "repository": "transformation-portfolio-contracts",
+        "commit": "4fb6af9344ba1b903fdda96891a18eb708ab82ea",
+        "tree": "e44be69ff1cd60fe9bb6f45a1b915db3fa7b6e27",
+        "direct_reference_files": 56,
+        "hosted_action_reference_files": 0
+      }
+    ],
+    "hosted_action_references": [],
+    "direct_consumer_references": [
+      {
+        "repository": "requirements-quality-agent",
+        "paths": [
+          "CHANGELOG.md",
+          "README.md",
+          "portfolio/contracts-lock.json",
+          "pyproject.toml",
+          "scripts/prepare_dependency_audit.py",
+          "scripts/verify_distribution.py",
+          "src/requirements_quality_agent/portfolio/adapter.py",
+          "tests/packaging/test_distribution_verifier.py",
+          "tests/security/test_dependency_audit_preparation.py",
+          "uv.lock"
+        ]
+      }
+    ],
+    "source_internal_reference_files": 56,
+    "source_internal_reference_occurrences": 166
+  },
+  "decision": {
+    "feasibility_verdict": "PASS",
+    "execution_verdict": "BLOCKED",
+    "rationale": "No hosted Action consumes the current path, the target is available, and an independently restored complete-history backup exists.",
+    "required_before_rename": [
+      "Merge this evidence branch through protected review.",
+      "Reconfirm source commit, target availability, backup checksum, and branch protection immediately before mutation.",
+      "Open the consumer-reference update branch and prepare its rollback before mutation.",
+      "Obtain separate explicit authorization for the repository-setting change.",
+      "Verify redirects, release downloads, raw v1.0.0 schemas, workflows, security settings, and required checks immediately after mutation."
+    ],
+    "immutable_compatibility_rule": "Published v1.0.0 package names, release assets, tag objects, schema identifiers, and digests are never rewritten.",
+    "rollback": "If post-change verification fails, stop publication and either rename back while the former name remains available or restore exact refs from the verified bundle under separately authorized recovery."
+  }
+}

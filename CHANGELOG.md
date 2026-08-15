@@ -5,7 +5,12 @@ All notable changes are recorded here. This project follows
 
 ## [Unreleased]
 
-No changes yet.
+### Governance
+
+- Add the G0 repository identity manifest, target-name collision evidence, dependency and hosted
+  Action inventory, complete-history backup checksum, and restore-rehearsal record.
+- Record the proposed `transformation-agent-contracts` identity without changing repository
+  settings or immutable v1.0.0 compatibility identifiers.
 
 ## [1.0.0] - 2026-08-10
 
