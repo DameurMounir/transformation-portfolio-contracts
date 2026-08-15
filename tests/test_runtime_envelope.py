@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import cast
 
@@ -28,7 +28,7 @@ from transformation_portfolio_contracts.runtime_envelope import (
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "fixtures" / "runtime-envelope" / "v1.1"
 KEY = bytes(range(1, 33))
-NOW = datetime(2026, 8, 15, 12, 15, tzinfo=timezone.utc)
+NOW = datetime(2026, 8, 15, 12, 15, tzinfo=UTC)
 
 
 def _load(relative: str) -> dict[str, JSONValue]:
@@ -76,14 +76,14 @@ def test_signing_is_non_mutating_and_deterministic() -> None:
         unsigned,
         key_id="KEY-TEST-RUNTIME-001",
         key=KEY,
-        signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=timezone.utc),
+        signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=UTC),
         root=ROOT,
     )
     second = sign_runtime_envelope(
         unsigned,
         key_id="KEY-TEST-RUNTIME-001",
         key=KEY,
-        signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=timezone.utc),
+        signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=UTC),
         root=ROOT,
     )
 
@@ -97,9 +97,10 @@ def test_projection_excludes_only_signature() -> None:
 
     assert "signature" not in projection
     assert set(projection) == set(envelope) - {"signature"}
-    assert runtime_envelope_digest(envelope) == cast(dict[str, str], envelope["signature"])[
-        "signed_digest"
-    ]
+    assert (
+        runtime_envelope_digest(envelope)
+        == cast(dict[str, str], envelope["signature"])["signed_digest"]
+    )
 
 
 @pytest.mark.parametrize(
@@ -112,7 +113,7 @@ def test_projection_excludes_only_signature() -> None:
         (
             "invalid/expired.json",
             "ENVELOPE_EXPIRED",
-            datetime(2026, 8, 15, 12, 45, tzinfo=timezone.utc),
+            datetime(2026, 8, 15, 12, 45, tzinfo=UTC),
         ),
     ],
 )
@@ -120,9 +121,7 @@ def test_invalid_fixtures_fail_closed(
     fixture: str, expected_code: str, evaluated_at: datetime
 ) -> None:
     with pytest.raises(RuntimeEnvelopeValidationError) as raised:
-        verify_runtime_envelope(
-            _load(fixture), key_resolver=_resolver, now=evaluated_at, root=ROOT
-        )
+        verify_runtime_envelope(_load(fixture), key_resolver=_resolver, now=evaluated_at, root=ROOT)
 
     assert expected_code in _codes(raised.value)
 
@@ -154,7 +153,7 @@ def test_not_yet_valid_is_distinct_from_expired() -> None:
         verify_runtime_envelope(
             _load("valid/minimal.json"),
             key_resolver=_resolver,
-            now=datetime(2026, 8, 15, 11, 59, tzinfo=timezone.utc),
+            now=datetime(2026, 8, 15, 11, 59, tzinfo=UTC),
             root=ROOT,
         )
 
@@ -287,7 +286,7 @@ def test_signing_requires_payload_and_policy_context() -> None:
             unsigned,
             key_id="KEY-TEST-RUNTIME-001",
             key=KEY,
-            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=timezone.utc),
+            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=UTC),
             root=ROOT,
         )
     assert _codes(raised.value) == {"PAYLOAD_REQUIRED"}
@@ -299,7 +298,7 @@ def test_signing_requires_payload_and_policy_context() -> None:
             unsigned,
             key_id="KEY-TEST-RUNTIME-001",
             key=KEY,
-            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=timezone.utc),
+            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=UTC),
             root=ROOT,
         )
     assert _codes(raised.value) == {"POLICY_CONTEXT_REQUIRED"}
@@ -325,7 +324,7 @@ def test_signing_wraps_reference_model_failure() -> None:
             unsigned,
             key_id="KEY-TEST-RUNTIME-001",
             key=KEY,
-            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=timezone.utc),
+            signed_at=datetime(2026, 8, 15, 12, 0, 5, tzinfo=UTC),
             root=ROOT,
         )
     assert _codes(raised.value) == {"REFERENCE_MODEL_INVALID"}

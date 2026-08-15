@@ -13,7 +13,7 @@ import hashlib
 import hmac
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal, Self, cast
 
@@ -136,7 +136,7 @@ class RuntimeEnvelopeModel(_ReferenceModel):
         ):
             if value.tzinfo is None or value.utcoffset() is None:
                 raise ValueError(f"{label} must be timezone-aware")
-            if value.utcoffset() != timezone.utc.utcoffset(value):
+            if value.utcoffset() != UTC.utcoffset(value):
                 raise ValueError(f"{label} must be UTC")
         if self.expires_at <= self.issued_at:
             raise ValueError("expires_at must be after issued_at")
@@ -182,7 +182,7 @@ def _error(
 def _format_utc(value: datetime) -> str:
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError("timestamp must be timezone-aware")
-    normalized = value.astimezone(timezone.utc).isoformat(timespec="seconds")
+    normalized = value.astimezone(UTC).isoformat(timespec="seconds")
     return normalized.replace("+00:00", "Z")
 
 
@@ -224,9 +224,11 @@ def validate_runtime_envelope_schema(
             Diagnostic(
                 "SCHEMA_" + str(error.validator or "ERROR").upper(),
                 error.message,
-                "" if not error.absolute_path else "/" + "/".join(
-                    str(part).replace("~", "~0").replace("/", "~1")
-                    for part in error.absolute_path
+                ""
+                if not error.absolute_path
+                else "/"
+                + "/".join(
+                    str(part).replace("~", "~0").replace("/", "~1") for part in error.absolute_path
                 ),
             )
             for error in errors
@@ -351,10 +353,10 @@ def verify_runtime_envelope(
             "/signature/signed_digest",
         )
 
-    evaluated_at = now or datetime.now(timezone.utc)
+    evaluated_at = now or datetime.now(UTC)
     if evaluated_at.tzinfo is None or evaluated_at.utcoffset() is None:
         raise ValueError("now must be timezone-aware")
-    evaluated_at = evaluated_at.astimezone(timezone.utc)
+    evaluated_at = evaluated_at.astimezone(UTC)
     if evaluated_at < model.issued_at:
         raise _error("ENVELOPE_NOT_YET_VALID", "envelope has not reached issued_at", "/issued_at")
     if evaluated_at > model.expires_at:
