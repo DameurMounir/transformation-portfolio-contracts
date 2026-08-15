@@ -97,6 +97,13 @@ class ArtifactValidationError(ContractError):
     exit_code = 4
 
 
+class RuntimeEnvelopeValidationError(ContractError):
+    """A runtime envelope fails schema, digest, time, key, or signature verification."""
+
+    error_code = "RUNTIME_ENVELOPE_VALIDATION_ERROR"
+    exit_code = 4
+
+
 class LineageValidationError(ContractError):
     """A set of artifacts does not form a trustworthy lineage graph."""
 

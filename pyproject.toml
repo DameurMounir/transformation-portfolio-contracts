@@ -34,6 +34,7 @@ classifiers = [
 ]
 dependencies = [
   "jsonschema[format]>=4.23,<5",
+  "pydantic>=2.10,<3",
   "rfc8785>=0.1.4,<1",
 ]
 
@@ -73,6 +74,7 @@ transformation_portfolio_contracts = ["py.typed"]
 
 [tool.setuptools.data-files]
 "share/transformation-portfolio-contracts/schemas/common" = ["schemas/common/*.json"]
+"share/transformation-portfolio-contracts/schemas/envelope" = ["schemas/envelope/*.json"]
 "share/transformation-portfolio-contracts/schemas/stages" = ["schemas/stages/*.json"]
 "share/transformation-portfolio-contracts/registry" = ["registry/*.json"]
 "share/transformation-portfolio-contracts/conformance/valid" = ["conformance/valid/*.json"]
@@ -82,6 +84,15 @@ transformation_portfolio_contracts = ["py.typed"]
   "examples/atlasbridge-end-to-end/*.json",
   "examples/atlasbridge-end-to-end/*.jsonl",
   "examples/atlasbridge-end-to-end/*.md",
+]
+"share/transformation-portfolio-contracts/fixtures/runtime-envelope/v1.1" = [
+  "fixtures/runtime-envelope/v1.1/*.json",
+]
+"share/transformation-portfolio-contracts/fixtures/runtime-envelope/v1.1/valid" = [
+  "fixtures/runtime-envelope/v1.1/valid/*.json",
+]
+"share/transformation-portfolio-contracts/fixtures/runtime-envelope/v1.1/invalid" = [
+  "fixtures/runtime-envelope/v1.1/invalid/*.json",
 ]
 
 [tool.pytest.ini_options]

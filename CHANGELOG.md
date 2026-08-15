@@ -5,6 +5,17 @@ All notable changes are recorded here. This project follows
 
 ## [Unreleased]
 
+### Contracts
+
+- Add the candidate `RuntimeEnvelope.v1.1` Draft 2020-12 schema with bounded actor,
+  accountable-principal, tenant/workspace, correlation/causation/trace, payload-schema,
+  artifact/evidence-reference, policy-context, digest, expiry, idempotency, and signature fields.
+- Add strict Pydantic reference models, RFC 8785/SHA-256 digest binding, a domain-separated
+  HMAC-SHA-256 reference profile, injected key resolution, and fail-closed verification.
+- Add deterministic valid, tamper, expiry, unsupported-version, invalid-trace, digest, and signature
+  fixtures with golden vectors and expected diagnostics.
+- Package the runtime-envelope schema and fixtures while preserving every released v1.0.0 contract.
+
 ### Governance
 
 - Add the G0 repository identity manifest, target-name collision evidence, dependency and hosted

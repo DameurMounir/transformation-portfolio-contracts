@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DameurMounir/transformation-agent-contracts/v1.1.0/schemas/envelope/v1.1.json",
+  "actor": {
+    "accountable_principal_id": "PRINCIPAL-MOUNIR-001",
+    "actor_id": "AGENT-ORCHESTRATOR-001",
+    "actor_type": "AGENT",
+    "agent_id": "AGENT-ORCHESTRATOR-001"
+  },
+  "artifact_references": [
+    {
+      "artifact_id": "RQA-ATLASBRIDGE-001",
+      "digest": "1111111111111111111111111111111111111111111111111111111111111111",
+      "relationship": "INPUT",
+      "schema_uri": "urn:sherizon:artifact:requirements-assessment:1.0.0"
+    }
+  ],
+  "correlation": {
+    "causation_id": "CAUSE-ATLASBRIDGE-000",
+    "correlation_id": "CORRELATION-ATLASBRIDGE-001",
+    "traceparent": "00-00000000000000000000000000000000-0000000000000000-01"
+  },
+  "digest_profile": "TPC-JCS-SHA256-v1",
+  "envelope_id": "RUNTIME-ENVELOPE-ATLASBRIDGE-001",
+  "evidence_references": [
+    {
+      "digest": "2222222222222222222222222222222222222222222222222222222222222222",
+      "evidence_id": "EVIDENCE-AUTHORITY-001",
+      "kind": "AUTHORITY_GRANT",
+      "uri": "urn:sherizon:evidence:authority:001"
+    }
+  ],
+  "expires_at": "2026-08-15T13:00:00Z",
+  "idempotency_key": "IDEMPOTENCY-ATLASBRIDGE-001",
+  "issued_at": "2026-08-15T12:00:00Z",
+  "payload": {
+    "case_id": "ATLASBRIDGE-CASE-001",
+    "command": "ASSESS_REQUIREMENTS",
+    "transformation_id": "ATLASBRIDGE-TRANSFORMATION-001"
+  },
+  "payload_digest": "f492653ac06597d578d1fa339c8303b4bb9abd933b0e92592989cf344d40b164",
+  "policy_context": {
+    "authority_scope": "TRANSFORMATION_WORKFLOW_EXECUTION",
+    "effect_class": "READ_ONLY",
+    "required_evidence": [
+      "EVIDENCE-AUTHORITY-001"
+    ]
+  },
+  "policy_context_digest": "30bb9e5a7f586383d3225e0dbaa81dd2b361e0dc2963a6ba4f4a9af02ea84532",
+  "schema_uri": "urn:sherizon:runtime-payload:workflow-command:1.0.0",
+  "signature": {
+    "algorithm": "HMAC-SHA256",
+    "key_id": "KEY-TEST-RUNTIME-001",
+    "profile": "TPC-HMAC-SHA256-v1",
+    "signed_at": "2026-08-15T12:00:05Z",
+    "signed_digest": "5bb4e813b762b63b59593f35cd7c33372dde8d80e9eeefebd7b060dd355fbb2b",
+    "value": "7b2c1478584fd94fdb9c08b7551b3392b072737fd6b81e970ec34d9960e79ad5"
+  },
+  "spec_version": "1.1.0",
+  "tenant": {
+    "environment": "TEST",
+    "tenant_id": "TENANT-SHERIZON-001",
+    "workspace_id": "WORKSPACE-ATLASBRIDGE-001"
+  }
+}
