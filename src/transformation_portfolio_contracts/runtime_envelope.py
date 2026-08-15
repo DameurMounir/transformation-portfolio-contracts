@@ -276,7 +276,7 @@ def sign_runtime_envelope(
 ) -> dict[str, JSONValue]:
     """Create a signed copy without mutating caller-owned input."""
 
-    result = cast(dict[str, JSONValue], copy.deepcopy(dict(envelope)))
+    result = copy.deepcopy(dict(envelope))
     result.pop("signature", None)
     payload = result.get("payload")
     policy_context = result.get("policy_context")
